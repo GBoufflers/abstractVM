@@ -2,14 +2,18 @@ NAME=		abstractVM
 
 CXX=		g++
 CC=		$(CXX)
-CXXFLAGS=	-W -Wall -Wextra -I include
 
-OBJ=		main.o				\
+OBJ=		main.o					\
+		IOP/Int8.o				\
+		IOP/Int16.o				\
+		IOP/Int32.o				\
+		IOP/Double.o				\
+		IOP/Float.o				\
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $^ -o $@
 
 clean:
 	$(RM) $(OBJ)
