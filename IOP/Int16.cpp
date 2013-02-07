@@ -2,7 +2,7 @@
 
 Types::Int16::Int16()
 {
-
+  this->_type = Int16;
 }
 
 Types::Int16::~Int16()
