@@ -1,8 +1,9 @@
+#include	"IOperand.hh"
 #include	"Types.hh"
 
 Types::Int16::Int16()
 {
-  this->_type = Int16;
+  this->_type = Int8;
 }
 
 Types::Int16::~Int16()

@@ -1,13 +1,15 @@
 #ifndef			__IOPERAND_HH__
 #define			__IOPERAND_HH__
 
+#include		<string>
+
 enum		eOperandType
   {
-    Int8 = 0,
-    Int16 = 1,
-    Int32 = 2,
-    Float = 3,
-    Double = 4
+    Int8,
+    Int16,
+    Int32,
+    Float,
+    Double
   };
 
 class	IOperand
