@@ -4,11 +4,6 @@ CXX=		g++
 CC=		$(CXX)
 
 OBJ=		main.o					\
-		IOP/Int8.o				\
-		IOP/Int16.o				\
-		IOP/Int32.o				\
-		IOP/Double.o				\
-		IOP/Float.o				\
 
 all: $(NAME)
 
