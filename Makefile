@@ -1,4 +1,4 @@
-NAME=		abstractVMl
+NAME=		abstractVM
 
 CXX=		g++ -Wall -Werror -Wextra
 
