@@ -1,9 +1,10 @@
 NAME=		abstractVM
 
-CXX=		g++
+CXX=		g++ -Wall -Werror -Wextra
+
 CC=		$(CXX)
 
-OBJ=		main.o					\
+OBJ=		core/main.o					\
 
 all: $(NAME)
 
