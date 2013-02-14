@@ -1,51 +1,61 @@
 #include		"../headers/Operand.hh"
 
-Operand::Operand()
+template <typename T>
+Operand<T>::Operand()
 {
 
 }
 
-Operand::~Operand()
+template <typename T>
+Operand<T>::~Operand()
 {
 
 }
 
-std::string const			&Operand::toString() const // Renvoie une string reprensentant l'instance
+template <typename T>
+std::string const			&Operand<T>::toString() const // Renvoie une string reprensentant l'instance
 {
   
 }
 
-int					Operand::getPrecision() const // Renvoie la precision du type de l'instance
+template <typename T>
+int					Operand<T>::getPrecision() const // Renvoie la precision du type de l'instance
 {
   return (0);
 }
 
-eOperandType				Operand::getType() const// Renvoie le type de l'instance. Voir plus bas
+template <typename T>
+eOperandType				Operand<T>::getType() const// Renvoie le type de l'instance. Voir plus bas
 {
   return (Int8);
 }
 
-IOperand				*Operand::operator+(const IOperand &rhs) const // Somme
+template <typename T>
+IOperand				*Operand<T>::operator+(const IOperand &rhs) const // Somme
 {
   return (NULL);
 }
 
-IOperand				*Operand::operator-(const IOperand &rhs) const // Difference
+template <typename T>
+IOperand				*Operand<T>::operator-(const IOperand &rhs) const // Difference
 {
   return (NULL);
 }
 
-IOperand				*Operand::operator*(const IOperand &rhs) const// Produit
+template <typename T>
+IOperand				*Operand<T>::operator*(const IOperand &rhs) const// Produit
 {
   return (NULL);
 }
 
-IOperand				*Operand::operator/(const IOperand &rhs) const //Quotient
+template <typename T>
+IOperand				*Operand<T>::operator/(const IOperand &rhs) const //Quotient
 {
   return (NULL);
 }
 
-IOperand				*Operand::operator%(const IOperand &rhs) const // Modulo
+template <typename T>
+IOperand				*Operand<T>::operator%(const IOperand &rhs) const // Modulo
 {
   return (NULL);
 }

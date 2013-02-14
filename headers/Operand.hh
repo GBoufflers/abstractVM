@@ -3,9 +3,13 @@
 
 #include		<string>
 #include		"IOperand.hh"
- 
+
+template<typename T> 
 class	Operand : public IOperand
 {
+private:
+  T					_value;
+  eOperandType				_type;
 public:
   Operand();
   virtual ~Operand();
