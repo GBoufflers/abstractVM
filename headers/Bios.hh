@@ -1,6 +1,7 @@
 #ifndef __BIOS_HH__
 #define __BIOS_HH__
 
+#include	<string>
 #include	"IBios.hh"
 #include	"IOperand.hh"
 

@@ -3,7 +3,7 @@
 template <class T>
 Operand<T>::Operand()
 {
-  //  std::cout << "lol on est la " << std::endl;
+  std::cout << "lol on est la "  << T << << std::endl;
 }
 
 template <class T>

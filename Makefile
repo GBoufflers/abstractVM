@@ -1,6 +1,6 @@
 NAME=		abstractVM
 
-CXX=		g++
+CXX=		g++ -g
 
 CC=		$(CXX)
 

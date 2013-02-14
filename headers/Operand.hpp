@@ -1,5 +1,5 @@
-#ifndef			__OPERAND_HH__
-#define			__OPERAND_HH__
+#ifndef			__OPERAND_HHP__
+#define			__OPERAND_HHP__
 
 #include		<string>
 #include		"IOperand.hh"

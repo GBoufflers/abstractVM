@@ -9,6 +9,7 @@
 Bios::Bios()
 {
   initTab();
+  std::cout << "on est dans le bios" << std::endl;
 }
 
 Bios::~Bios()
@@ -27,29 +28,27 @@ void		Bios::initTab()
 
 IOperand *	Bios::createInt32(const std::string & value)
 {
-
+  return (new Operand<Int32>());
 }
 
 IOperand *	Bios::createInt16(const std::string & value)
 {
-
+  return (new Operand<Int16>());
 }
 
 IOperand *	Bios::createInt8(const std::string & value)
 {
-  IOperand	*yop;
-  yop = new Operand<Int8>();
-  return (yop);
+  return (new Operand<Int8>());
 }
 
 IOperand *	Bios::createFloat(const std::string & value)
 {
-
+  return (new Operand<Float>());
 }
 
 IOperand *	Bios::createDouble(const std::string & value)
 {
-
+  return (new Operand<Double>());
 }
 
 IOperand *	Bios::createOperand(eOperandType type, const std::string & value)
