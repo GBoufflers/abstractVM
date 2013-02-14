@@ -1,6 +1,9 @@
 #ifndef __IBIOS_HH__
 #define __IBIOS_HH__
 
+#include	<string>
+#include	"IOperand.hh"
+
 class		IBios
 {
 public:

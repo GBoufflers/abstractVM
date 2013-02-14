@@ -2,6 +2,7 @@
 #define __BIOS_HH__
 
 #include	"IBios.hh"
+#include	"IOperand.hh"
 
 class		Bios : public IBios
 {

@@ -9,6 +9,7 @@ OBJ=		core/main.o \
 		src/Io.o \
 		src/Bus.o \
 		src/Bios.o \
+		src/Chipset.o \
 		src/MotherBoard.o \
 		src/Operand.o
 
