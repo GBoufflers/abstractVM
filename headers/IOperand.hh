@@ -1,6 +1,9 @@
 #ifndef			__IOPERAND_HH__
 #define			__IOPERAND_HH__
 
+#include		<iostream>
+#include		<string>
+
 enum	eOperandType
   {
     Int8,

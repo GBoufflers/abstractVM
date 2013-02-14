@@ -4,7 +4,7 @@
 #include		<string>
 #include		"IOperand.hh"
 
-template<typename T> 
+template<class T> 
 class	Operand : public IOperand
 {
 private:
