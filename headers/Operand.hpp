@@ -13,7 +13,7 @@ private:
 public:
   Operand()
   {
-
+    std::cout << "on est arrivé dans les operandes "  << std::endl;
   }
 
   virtual ~Operand()
