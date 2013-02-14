@@ -1,2 +1,2 @@
-#include	"../headers/IMemory.hh"
+#include	"../headers/Memory.hh"
 
