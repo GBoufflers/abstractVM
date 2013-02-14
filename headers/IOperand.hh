@@ -24,7 +24,7 @@ public:
   virtual IOperand				*operator/(const IOperand &rhs) const = 0; // Quotient
   virtual IOperand				*operator%(const IOperand &rhs) const = 0; // Modulo
 
-  virtual ~IOperand(){}
+  virtual ~IOperand(){};
 };
 
 #endif

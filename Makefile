@@ -1,17 +1,17 @@
 NAME=		abstractVM
 
-CXX=		g++ 
+CXX=		g++
 
 CC=		$(CXX)
 
 OBJ=		core/main.o \
 		src/Memory.o \
 		src/Io.o \
-		src/Bus.o \
+		src/busMem.o \
 		src/Bios.o \
 		src/Chipset.o \
 		src/MotherBoard.o \
-		src/Operand.o
+		src/Operand.o 
 
 all: $(NAME)
 

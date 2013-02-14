@@ -9,8 +9,8 @@ public:
   Memory();
   virtual ~Memory();
 
-  virtual std::stack<std::string> &getPile() const;
-  virtual void setPile(std::stack<std::string> &);
+  /*  virtual std::stack<std::string> &getPile() const;
+      virtual void setPile(std::stack<std::string> &);*/
 };
 
 #endif

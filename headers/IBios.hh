@@ -7,7 +7,7 @@
 class		IBios
 {
 public:
-  virtual ~IBios();
+  virtual ~IBios() {};
   
   virtual IOperand *createInt32(const std::string & value) = 0;
   virtual IOperand *createInt16(const std::string & value) = 0;
