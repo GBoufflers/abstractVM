@@ -11,7 +11,8 @@ OBJ=		core/main.o \
 		src/Bios.o \
 		src/Chipset.o \
 		src/MotherBoard.o \
-		src/Operand.o 
+		src/Operand.o \
+		src/ChipsetCpu.o
 
 all: $(NAME)
 

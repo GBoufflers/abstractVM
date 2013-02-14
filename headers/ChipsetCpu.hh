@@ -9,8 +9,8 @@ public:
   ChipsetCpu();
   virtual ~ChipsetCpu();
   /*********************/
-  putInList() = 0;
-  putInputList() = 0;
+  std::list<std::string>	putInList() = 0;
+  std::list<std::string>	putInputList() = 0;
 };
 
 #endif

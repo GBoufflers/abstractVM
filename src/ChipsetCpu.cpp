@@ -1,4 +1,4 @@
-#include			"ChipsetCpu.hh"
+#include			"../headers/ChipsetCpu.hh"
 
 ChipsetCpu::ChipsetCpu()
 {
@@ -12,12 +12,12 @@ ChipsetCpu::~ChipsetCpu()
 
 /*********************/
 
-void			ChipsetCpu::putInList()
+std::list<std::string>			ChipsetCpu::putInList()
 {
 
 }
 
-void			ChipsetCpu::putInputList()
+std::list<std::string>			ChipsetCpu::putInputList()
 {
 
 }
