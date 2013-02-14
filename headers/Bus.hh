@@ -9,8 +9,8 @@ public:
   virtual ~Bus();
   Bus();
 
-  std::stack &getMemory() const;
-  void setMemory(std::stack &); 
+  std::stack<std::string> &getMemory() const;
+  void setMemory(std::stack<std::string> &); 
 };
 
 #endif

@@ -5,7 +5,9 @@ CXX=		g++ -Wall -Werror -Wextra
 CC=		$(CXX)
 
 OBJ=		core/main.o \
-		src/memory.o \
+		src/Memory.o \
+		src/Io.o \
+		src/Bus.o \
 		src/motherBoard.o \
 		src/operand.o
 
