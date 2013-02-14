@@ -9,8 +9,8 @@ OBJ=		core/main.o \
 		src/Io.o \
 		src/Bus.o \
 		src/Bios.o \
-		src/motherBoard.o \
-		src/operand.o
+		src/MotherBoard.o \
+		src/Operand.o
 
 all: $(NAME)
 
