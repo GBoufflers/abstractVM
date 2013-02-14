@@ -1,3 +1,3 @@
-#include		"../header/motherBoard.hh"
+#include		"../headers/motherBoard.hh"
 
 

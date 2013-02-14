@@ -4,7 +4,10 @@ CXX=		g++ -Wall -Werror -Wextra
 
 CC=		$(CXX)
 
-OBJ=		core/main.o					\
+OBJ=		core/main.o \
+		src/memory.o \
+		src/motherBoard.o \
+		src/operand.o
 
 all: $(NAME)
 
