@@ -3,8 +3,6 @@
 
 #include	<stack>
 #include	<string>
-#include	<ostream>
-#include	<iostream>
 
 class	IMemory
 {
