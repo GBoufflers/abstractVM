@@ -39,7 +39,7 @@ IOperand *	Bios::createInt8(const std::string & value)
 {
   IOperand	*yop;
   yop = new Operand<Int8>();
-  //  return (yop);
+  return (yop);
 }
 
 IOperand *	Bios::createFloat(const std::string & value)
