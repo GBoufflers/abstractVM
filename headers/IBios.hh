@@ -12,6 +12,6 @@ public:
   virtual IOperand *createFloat(const std::string & value) = 0;
   virtual IOperand *createDouble(const std::string & value) = 0;
   virtual IOperand *createOperand(eOperandType type, const std::string & value) = 0;
-}
+};
 
 #endif

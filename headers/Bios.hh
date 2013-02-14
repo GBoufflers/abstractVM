@@ -15,6 +15,6 @@ public:
   IOperand *createFloat(const std::string & value);
   IOperand *createDouble(const std::string & value);
   IOperand *createOperand(eOperandType type, const std::string & value);
-}
+};
 
 #endif
