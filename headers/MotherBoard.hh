@@ -1,7 +1,7 @@
 #ifndef			__MOTHERBOARD_HH__
 #define			__MOTHERBOARD_HH__
 
-class	motherBoard
+class	MotherBoard
 {
 private:
   //Ibios			*bios;
@@ -11,7 +11,9 @@ private:
   //IchipsetCpu			*chipsetCpu;
   //Iio				*io;	
 public:
+  MotherBoard();
+  ~MotherBoard();
+};
 
-}
 
 #endif

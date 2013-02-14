@@ -1,6 +1,6 @@
 NAME=		abstractVM
 
-CXX=		g++ -Wall -Werror -Wextra
+CXX=		g++ 
 
 CC=		$(CXX)
 
