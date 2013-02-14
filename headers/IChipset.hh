@@ -10,7 +10,7 @@ class	IChipset
 {
 public:
   virtual std::list<std::string> putInList(std::ifstream file) = 0;
-  virtual ~IChipset();
+  virtual ~IChipset(){};
 };
 
 #endif

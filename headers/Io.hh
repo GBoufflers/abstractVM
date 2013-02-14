@@ -9,8 +9,8 @@ public:
   virtual ~Io();
   Io();
 
-  virtual void	dump() const = 0 ;
-  virtual void	print() const = 0;  
+  /*  virtual void	dump() const = 0 ;
+      virtual void	print() const = 0;  */
 };
 
 #endif

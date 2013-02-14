@@ -7,9 +7,9 @@
 class	IMemory
 {
 public:
+  virtual ~IMemory() {};
   virtual std::stack<std::string> &getPile() const = 0;
   virtual void setPile(std::stack<std::string> &)  = 0;
-  virtual ~IMemory();
 };
 
 #endif

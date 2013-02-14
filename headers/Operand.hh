@@ -8,7 +8,7 @@ class	Operand : public IOperand
 {
 public:
   Operand();
-  ~Operand();
+  virtual ~Operand();
   /*************/
   std::string const			&toString() const = 0;// Renvoie une string reprensentant l'instance
   /*************/
