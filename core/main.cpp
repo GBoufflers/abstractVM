@@ -1,10 +1,10 @@
-#include	"../headers/Bios.hh"
+#include		<iostream>
+#include		<sstream>
+#include		<string>
+#include		"../headers/Bios.hh"
+#include		"../headers/IOperand.hh"
 
 int	main(int ac, char **av)
 {
-  if (ac == 1)
-    ;
-  else
-    ;
   return (0);
 }
