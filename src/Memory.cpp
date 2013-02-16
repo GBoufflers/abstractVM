@@ -10,12 +10,12 @@ Memory::~Memory()
 
 }
 
-std::stack<std::string> &getPile() const
+std::stack<IOperand *>	&Memory::getPile()
 {
-
+  return (this->mem);
 }
 
-void setPile(std::stack<std::string> &)
+void			Memory::setPile(std::stack<IOperand *> & mem)
 {
-
+  this->mem = mem;
 }
