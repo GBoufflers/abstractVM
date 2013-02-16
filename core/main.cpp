@@ -1,9 +1,10 @@
 #include	"../headers/Bios.hh"
 
-int	main()
+int	main(int ac, char **av)
 {
-  Bios	a;
-
-  a.createOperand(Int8, "10");
+  if (ac == 1)
+    ;
+  else
+    ;
   return (0);
 }

@@ -9,7 +9,7 @@ class	IMemory
 {
 public:
   virtual ~IMemory() {};
-  virtual std::stack<IOperand *> &getPile() const = 0;
+  virtual std::stack<IOperand *> getPile() const = 0;
   virtual void setPile(std::stack<IOperand *> &)  = 0;
 };
 

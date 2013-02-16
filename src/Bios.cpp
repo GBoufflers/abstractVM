@@ -26,9 +26,9 @@ void		Bios::initTab()
   this->creation[4] = &Bios::createDouble;
 }
 
-IOperand *	Bios::createInt32(const std::string & value)
+IOperand *	Bios::createInt8(const std::string & value)
 {
-  return (new Operand<Int32>());
+  return (new Operand<Int8>());
 }
 
 IOperand *	Bios::createInt16(const std::string & value)
@@ -36,9 +36,9 @@ IOperand *	Bios::createInt16(const std::string & value)
   return (new Operand<Int16>());
 }
 
-IOperand *	Bios::createInt8(const std::string & value)
+IOperand *	Bios::createInt32(const std::string & value)
 {
-  return (new Operand<Int8>());
+  return (new Operand<Int32>());
 }
 
 IOperand *	Bios::createFloat(const std::string & value)
@@ -56,5 +56,5 @@ IOperand *	Bios::createOperand(eOperandType type, const std::string & value)
   int		a = 0;
 
   if (type >= 0 && type <= 4)
-    (this->*creation[type])(value);
+    return ((this->*creation[type])(value));
 }

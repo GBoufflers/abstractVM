@@ -12,7 +12,7 @@ public:
   Memory();
   virtual ~Memory();
 
-  virtual std::stack<IOperand *> &getPile();
+  virtual std::stack<IOperand *> getPile() const;
   virtual void setPile(std::stack<IOperand *> &);
 };
 

@@ -10,9 +10,9 @@ Memory::~Memory()
 
 }
 
-std::stack<IOperand *>	&Memory::getPile()
+std::stack<IOperand *>	Memory::getPile() const
 {
-  return (this->mem);
+  return(this->mem);
 }
 
 void			Memory::setPile(std::stack<IOperand *> & mem)
