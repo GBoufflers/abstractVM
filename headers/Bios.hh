@@ -3,7 +3,7 @@
 
 #include	<string>
 #include	"IBios.hh"
-#include	"IOperand.hh"
+#include	"enum.hh"
 
 class		Bios : public IBios
 {

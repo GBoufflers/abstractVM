@@ -3,15 +3,7 @@
 
 #include		<iostream>
 #include		<string>
-
-enum	eOperandType
-  {
-    Int8,
-    Int16,
-    Int32,
-    Float,
-    Double
-  };
+#include		"enum.hh"
 
 class	IOperand
 {

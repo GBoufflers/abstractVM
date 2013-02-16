@@ -66,12 +66,14 @@ public:
   /*************/
   IOperand				*operator+(const IOperand &rhs) const
   {
-    /*    IOperand				*n;
-	  eOperandType			tmp;
+    /*
+      IOperand				*n;
+      eOperandType			tmp;
 
-	  tmp = this->getType();
-	  if (this->getType() < rhs.getType())
-	  tmp = rhs.getType();*/
+      tmp = this->getType();
+      if (this->getType() < rhs.getType())
+      tmp = rhs.getType();
+    */
   }
 
   IOperand				*operator-(const IOperand &rhs) const
