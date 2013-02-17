@@ -7,8 +7,8 @@
 
 class	Cpu
 {
-public:
-  
+  std::list<string>	res;
+public:  
   virtual ~Cpu();
   Cpu();
   /*******************/
