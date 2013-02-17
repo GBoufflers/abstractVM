@@ -12,12 +12,13 @@ ChipsetCpu::~ChipsetCpu()
 
 /*********************/
 
-std::list<std::string>			ChipsetCpu::putInList()
+std::stack<IOperand *>	ChipsetCpu::getMemory() const
 {
 
 }
 
-std::list<std::string>			ChipsetCpu::putInputList()
+void	ChipsetCpu::setMemory(std::stack<IOperand *> &mem)
 {
 
 }
+

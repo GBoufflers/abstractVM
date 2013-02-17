@@ -11,7 +11,7 @@ template<class T>
 class	Operand : public IOperand
 {
 private:
-  Bios					b;
+  //  Bios::Bios					b;
   std::string  				_value;
   int					_prec;
   eOperandType				_type;

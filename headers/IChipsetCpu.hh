@@ -3,12 +3,14 @@
 
 #include	<list>
 #include	<string>
+#include	<stack>
+#include	"IOperand.hh"
 
 class	IChipsetCpu
 {
 public:
-  virtual std::list<std::string> putInList() = 0;
-  virtual std::list<std::string> putInputList() = 0;
+  virtual std::stack<IOperand *> getMemory() const = 0;
+  virtual void	setMemory(std::stack<IOperand *> &) = 0;
   /***********************/
   virtual ~IChipsetCpu(){};
 };

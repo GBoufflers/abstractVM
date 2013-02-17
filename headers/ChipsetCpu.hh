@@ -9,8 +9,8 @@ public:
   ChipsetCpu();
   virtual ~ChipsetCpu();
   /*********************/
-  std::list<std::string>	putInList() = 0;
-  std::list<std::string>	putInputList() = 0;
+  virtual std::stack<IOperand *> getMemory() const;
+  virtual void	setMemory(std::stack<IOperand *> &);
 };
 
 #endif
