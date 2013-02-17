@@ -1,13 +1,13 @@
 #ifndef __CPU_HH__
 #define __CPU_HH__
 
-#include	<stack>
+#include	<list>
 #include	<string>
 #include	"ICpu.hh"
 
 class	Cpu
 {
-  std::list<string>	res;
+  std::list<std::string>	res;
 public:  
   virtual ~Cpu();
   Cpu();
