@@ -11,8 +11,7 @@ template<class T>
 class	Operand : public IOperand
 {
 private:
-  //  Bios::Bios					b;
-  std::string  				_value;
+  T	  				_value;
   int					_prec;
   eOperandType				_type;
 
@@ -30,29 +29,13 @@ public:
   /*************/
   std::string const			&toString() const
   {
-
-  }
-
-  template <typename U>
-  std::string				NumberToString(U Number)
-  {
-    std::stringstream ss;
-
-    ss << Number;
-    return (ss.str());
-  }
-
-  template <typename U>
-  U					StringToNumber(const std::string &Text)
-  {                               
-    std::stringstream ss(Text);
-    U result;
-
-    if (!(ss >> result))
-      result = 0; // a changer par une exception je pense
+    /*    T tmp;
+	  tmp = this->_value;
+    */
   }
 
   /*************/
+
   int					getPrecision() const
   {
     return (_prec);
@@ -64,16 +47,16 @@ public:
   }
 
   /*************/
+
   IOperand				*operator+(const IOperand &rhs) const
   {
-    /*
-      IOperand				*n;
-      eOperandType			tmp;
+    IOperand				*n;
+    eOperandType			t;
 
-      tmp = this->getType();
-      if (this->getType() < rhs.getType())
-      tmp = rhs.getType();
-    */
+    t = this->getType();
+    if (this->getType() < rhs.getType())
+      t = rhs.getType();
+    //    Sinit(toString());
   }
 
   IOperand				*operator-(const IOperand &rhs) const

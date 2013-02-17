@@ -10,8 +10,7 @@ OBJ=		core/main.o \
 		src/busMem.o \
 		src/Bios.o \
 		src/Chipset.o \
-		src/MotherBoard.o \
-		src/Cpu.o
+		src/MotherBoard.o
 
 all: $(NAME)
 

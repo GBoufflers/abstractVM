@@ -51,10 +51,17 @@ IOperand *	Bios::createDouble(const std::string & value)
   return (new Operand<Double>());
 }
 
-IOperand *	Bios::createOperand(eOperandType type, const std::string & value)
+IOperand *	Bios::createOperand(eOperandType type, const std::string &value)
 {
   int		a = 0;
 
   if (type >= 0 && type <= 4)
     return ((this->*creation[type])(value));
+}
+
+IOperand *Bios::Sinit(eOperandType type, const std::string &value)
+{
+  Bios a;
+
+  a.createOperand(type, value);
 }

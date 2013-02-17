@@ -4,12 +4,14 @@
 #include	<list>
 #include	<string>
 #include	<fstream>
-#include	<ostream>
+#include	<iostream>
 
 class	IChipset
 {
 public:
-  virtual std::list<std::string> putInList(std::ifstream file) = 0;
+  virtual	void readFile() = 0;
+  virtual	void readInput() = 0;
+  virtual	std::list<std::string>	getInstruction() = 0;
   virtual ~IChipset(){};
 };
 
