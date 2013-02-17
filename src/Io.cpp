@@ -9,3 +9,8 @@ Io::~Io()
 {
 
 }
+
+std::ostream	Io::readInput()
+{
+
+}

@@ -5,10 +5,14 @@
 
 class	Chipset : public IChipset
 {
+  std::ifstream	file;
+  std::list<std::string> instruction;
 public:
-  virtual ~Chipset();
   Chipset();
-  //  std::list<std::string> putInList(std::ifstream file) = 0;
+  virtual ~Chipset();
+  virtual void readFile();
+  virtual void readInput();
+  virtual std::list<std::string>	getInstruction();
 };
 
 #endif
