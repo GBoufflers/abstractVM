@@ -2,7 +2,7 @@
 #define __IBIOS_HH__
 
 #include	<string>
-#include	"Operand.hpp"
+#include	"IOperand.hh"
 
 class		IBios
 {

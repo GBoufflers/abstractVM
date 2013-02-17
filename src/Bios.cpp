@@ -1,4 +1,7 @@
 #include	"../headers/Bios.hh"
+#include	"../headers/enum.hh"
+
+#include	"../headers/Operand.hpp"
 
 #define		Int8	char
 #define		Int16	signed short
@@ -57,11 +60,4 @@ IOperand *	Bios::createOperand(eOperandType type, const std::string &value)
 
   if (type >= 0 && type <= 4)
     return ((this->*creation[type])(value));
-}
-
-IOperand *Bios::Sinit(eOperandType type, const std::string &value)
-{
-  Bios a;
-
-  a.createOperand(type, value);
 }
