@@ -1,7 +1,7 @@
 #ifndef __CPU_HH__
 #define __CPU_HH__
 
-#include	<stack>
+#include	<list>
 #include	<string>
 #include	"ICpu.hh"
 
@@ -9,6 +9,7 @@ class	Cpu
 {
   std::list<string>	res;
   std::list<string>	&instruction;
+
 public:  
   virtual ~Cpu();
   Cpu();
