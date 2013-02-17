@@ -1,6 +1,7 @@
 #ifndef			__ENUM_HH__
 #define			__ENUM_HH__
 
+
 enum	eOperandType
   {
     Int8,

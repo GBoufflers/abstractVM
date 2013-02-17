@@ -18,7 +18,6 @@ public:
   IOperand *createFloat(const std::string & value);
   IOperand *createDouble(const std::string & value);
   IOperand *createOperand(eOperandType type, const std::string & value);
-  static IOperand *Sinit(eOperandType type, const std::string &value);
 
   virtual void	initTab();
 };

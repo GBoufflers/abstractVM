@@ -8,9 +8,11 @@
 class	Cpu
 {
   std::list<string>	res;
+  std::list<string>	&instruction;
 public:  
   virtual ~Cpu();
   Cpu();
+
   /*******************/
   virtual void	add();
   virtual void	sub();

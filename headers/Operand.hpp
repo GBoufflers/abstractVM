@@ -1,9 +1,11 @@
+
 #ifndef			__OPERAND_HPP__
 #define			__OPERAND_HPP__
 
 #include		<iostream>
 #include		<sstream>
 #include		<string>
+#include		"enum.hh"
 #include		"Bios.hh"
 #include		"IOperand.hh"
 
@@ -14,7 +16,7 @@ private:
   T	  				_value;
   int					_prec;
   eOperandType				_type;
-
+  Bios					*q;
 public:
   Operand()
   {
@@ -48,6 +50,7 @@ public:
 
   /*************/
 
+  
   IOperand				*operator+(const IOperand &rhs) const
   {
     IOperand				*n;
@@ -56,8 +59,15 @@ public:
     t = this->getType();
     if (this->getType() < rhs.getType())
       t = rhs.getType();
-    //    Sinit(toString());
+    return(q->createOperand(Int8, "lol"));
   }
+
+  IOperand *	Sinit(eOperandType type, const std::string &value)
+  {
+    
+  }
+
+  /***************/
 
   IOperand				*operator-(const IOperand &rhs) const
   {
@@ -78,6 +88,8 @@ public:
   {
 
   }
+
+  
 };
 
 #endif
