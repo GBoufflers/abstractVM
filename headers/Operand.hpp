@@ -1,4 +1,3 @@
-
 #ifndef			__OPERAND_HPP__
 #define			__OPERAND_HPP__
 
@@ -14,9 +13,11 @@ class	Operand : public IOperand
 {
 private:
   T	  				_value;
+  std::string				const & _svalue = "lol";
   int					_prec;
   eOperandType				_type;
-  Bios					*q;
+  Bios					*_bios;
+
 public:
   Operand()
   {
@@ -31,10 +32,8 @@ public:
   /*************/
   std::string const			&toString() const
   {
-    /*    T tmp;
-	  tmp = this->_value;
-    */
-  }
+    return (this->_svalue);
+    }
 
   /*************/
 
@@ -53,18 +52,16 @@ public:
   
   IOperand				*operator+(const IOperand &rhs) const
   {
-    IOperand				*n;
     eOperandType			t;
+    std::string l;
+    T					val1, val2;
 
+    l = "lol";
     t = this->getType();
     if (this->getType() < rhs.getType())
       t = rhs.getType();
-    return(q->createOperand(Int8, "lol"));
-  }
-
-  IOperand *	Sinit(eOperandType type, const std::string &value)
-  {
-    
+    //    l = rhs.toString();
+    //    return(this->_bios->createOperand(t, l));
   }
 
   /***************/
