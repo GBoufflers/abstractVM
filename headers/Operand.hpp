@@ -19,74 +19,165 @@ private:
   Bios					*_bios;
 
 public:
-  Operand(const std::string &value) : _svalue(value)
-  {
-    std::cout << "nous avons créé une operande de valeur " << value << std::endl;
-  }
-
-  virtual ~Operand()
-  {
-
-  }
-
-  /*************/
-  std::string const			&toString() const
-  {
-    return (this->_svalue);
-    }
+  Operand(const std::string &value);
+  virtual ~Operand();
 
   /*************/
 
-  int					getPrecision() const
-  {
-    return (_prec);
-  }
-
-  eOperandType				getType() const
-  {
-    return (this->_type);
-  }
+  std::string const			&toString() const;
 
   /*************/
 
-  
-  IOperand				*operator+(const IOperand &rhs) const
-  {
-    eOperandType			t;
-    std::string l;
-    T					val1, val2;
+  int					getPrecision() const;
+  eOperandType				getType() const;
 
-    l = "lol";
-    t = this->getType();
-    if (this->getType() < rhs.getType())
-      t = rhs.getType();
-    //    l = rhs.toString();
-    //    return(this->_bios->createOperand(t, l));
-  }
+  /*************/
+
+  IOperand				*operator+(const IOperand &rhs) const;
+  IOperand				*operator-(const IOperand &rhs) const;
+  IOperand				*operator*(const IOperand &rhs) const;
+  IOperand				*operator/(const IOperand &rhs) const;
+  IOperand				*operator%(const IOperand &rhs) const;
+};
+
+template <typename T>
+Operand<T>::Operand(const std::string &value) : _svalue(value)
+{
+  std::cout << "nous avons créé une operande de valeur " << value << std::endl;
+}
+
+template <typename T>
+Operand<T>::~Operand()
+{
+
+}
+
+  /*************/
+
+template <typename T>
+std::string const			&Operand<T>::toString() const
+{
+  return (this->_svalue);
+}
+
+  /*************/
+
+template <typename T>
+int					Operand<T>::getPrecision() const
+{
+  return (_prec);
+}
+
+template <typename T>
+eOperandType				Operand<T>::getType() const
+{
+  return (this->_type);
+}
+
+  /*************/
+
+template <typename T>
+IOperand				*Operand<T>::operator+(const IOperand &rhs) const
+{
+  eOperandType				t;
+  std::string				resString;
+  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
+  T					res, val1, val2;
+
+  ss1 >> val1;
+  ss2 >> val2;
+  res = val1 + val2;
+  ss << res;
+  t = this->getType();
+  if (this->getType() < rhs.getType())
+    t = rhs.getType();
+  return(this->_bios->createOperand(t, ss.str()));
+}
 
   /***************/
 
-  IOperand				*operator-(const IOperand &rhs) const
-  {
+template <typename T>
+IOperand				*Operand<T>::operator-(const IOperand &rhs) const
+{
+  eOperandType				t;
+  std::string				resString;
+  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
+  T					res, val1, val2;
 
-  }
+  ss1 >> val1;
+  ss2 >> val2;
+  res = val1 - val2;
+  ss << res;
+  t = this->getType();
+  if (this->getType() < rhs.getType())
+    t = rhs.getType();
+  return(this->_bios->createOperand(t, ss.str()));
+}
 
-  IOperand				*operator*(const IOperand &rhs) const
-  {
+template <typename T>
+IOperand				*Operand<T>::operator*(const IOperand &rhs) const
+{
+  eOperandType				t;
+  std::string				resString;
+  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
+  T					res, val1, val2;
 
-  }
+  ss1 >> val1;
+  ss2 >> val2;
+  res = val1 * val2;
+  ss << res;
+  t = this->getType();
+  if (this->getType() < rhs.getType())
+    t = rhs.getType();
+  return(this->_bios->createOperand(t, ss.str()));
+}
 
-  IOperand				*operator/(const IOperand &rhs) const
-  {
+template <typename T>
+IOperand				*Operand<T>::operator/(const IOperand &rhs) const
+{
+  eOperandType				t;
+  std::string				resString;
+  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
+  T					res, val1, val2;
 
-  }
+  ss1 >> val1;
+  ss2 >> val2;
+  res = val1 / val2;
+  ss << res;
+  t = this->getType();
+  if (this->getType() < rhs.getType())
+    t = rhs.getType();
+  return(this->_bios->createOperand(t, ss.str()));
+}
 
-  IOperand				*operator%(const IOperand &rhs) const
-  {
+template <>
+inline IOperand				*Operand<float>::operator%(const IOperand &rhs) const
+{
 
-  }
+}
 
-  
-};
+template <>
+inline IOperand				*Operand<double>::operator%(const IOperand &rhs) const
+{
+
+}
+
+template <typename T>
+IOperand				*Operand<T>::operator%(const IOperand &rhs) const
+{
+  eOperandType				t;
+  std::string				resString;
+  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
+  T					res, val1, val2;
+
+  ss1 >> val1;
+  ss2 >> val2;
+  res = val1 % val2;
+  ss << res;
+  t = this->getType();
+  if (this->getType() < rhs.getType())
+    t = rhs.getType();
+  return(this->_bios->createOperand(t, ss.str()));
+}
 
 #endif
