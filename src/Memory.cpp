@@ -1,8 +1,10 @@
 #include	"../headers/Memory.hh"
 
+#include	<string>
+
 Memory::Memory()
 {
-
+  std::cout << "nous sommes dans memory" << std::endl;
 }
 
 Memory::~Memory()

@@ -18,9 +18,9 @@ private:
   eOperandType				_type;
   Bios					*q;
 public:
-  Operand()
+  Operand(const std::string &value)
   {
-
+    std::cout << "nous avons créé une operande de valeur " << value << std::endl;
   }
 
   virtual ~Operand()
