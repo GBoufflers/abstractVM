@@ -4,6 +4,7 @@
 #include		"../headers/Bios.hh"
 #include		"../headers/IOperand.hh"
 #include		"../headers/Memory.hh"
+#include		"../headers/myException.hh"
 #include		<stdexcept>
 #include		<vector>
 
@@ -11,31 +12,27 @@ int	main(int ac, char **av)
 {
   Memory	a;
   Bios		b;
-  std::stack<IOperand *>	lol;
+  std::list<IOperand *>	lol;
 
   lol = a.getPile();
-  lol.push(b.createOperand(Int8, "45"));
+  lol.push_back(b.createOperand(Int8, "45"));
   std::cout << "dans la liste lol nous avons " << lol.size() << std::endl;
   a.setPile(lol);
   std::cout << "dans la memoire nous avons " << a.getPile().size() << std::endl;
-  lol.pop();
+  lol.pop_back();
   a.setPile(lol);
-    std::cout << "dans la memoire nous avons " << a.getPile().size() << std::endl;
-  return (0);
-  // 
+  std::cout << "dans la memoire nous avons " << a.getPile().size() << std::endl;
   /*  try
     {
       int a;
-      int	b  = 0;
+      int	b  = 1;
       std::cout << "on est juste avant le calcul" << std::endl;
-      (b == 0) ? throw std::exception():  a = 4 / b; //Un tableau bien trop grand      
       
-      
-      std::cout << "on a passé cette merde ouesh" << std::endl;
+      (b == 0) ? throw myException("nous avons une valeur qui est egale à 0"):  a = 4 / b; //Un tableau bien trop grand      
+      std::cout << a << std::endl;
     }
-  catch(std::exception const& e) //On rattrape les exceptions standard de tous types
+  catch ( const std::exception & e )
     {
-      std::cout << "lol" << std::endl;
-      std::cerr << "ERREUR : " << e.what() << std::endl; //On affiche la description de l'erreur
-      }*/
+      std::cerr << e.what() << "\n";
+      }*/ 
 }

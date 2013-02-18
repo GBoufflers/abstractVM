@@ -13,13 +13,13 @@ class	Operand : public IOperand
 {
 private:
   T	  				_value;
-  std::string				const & _svalue = "lol";
+  std::string				const & _svalue;
   int					_prec;
   eOperandType				_type;
   Bios					*_bios;
 
 public:
-  Operand(const std::string &value)
+  Operand(const std::string &value) : _svalue(value)
   {
     std::cout << "nous avons créé une operande de valeur " << value << std::endl;
   }
