@@ -19,9 +19,9 @@ private:
   Bios					*_bios;
 
 public:
-  Operand()
+  Operand(const std::string &value)
   {
-
+    std::cout << "nous avons créé une operande de valeur " << value << std::endl;
   }
 
   virtual ~Operand()
