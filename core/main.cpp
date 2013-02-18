@@ -1,27 +1,29 @@
-#include		<iostream>
 #include		<sstream>
-#include		<string>
-#include		"../headers/Bios.hh"
+
+
 #include		"../headers/IOperand.hh"
-#include		"../headers/Memory.hh"
+#include		"../headers/Io.hh"
 #include		"../headers/myException.hh"
-#include		<stdexcept>
-#include		<vector>
+
+
+
+void	avm(char *file)
+{
+  Io	a;
+
+  a.readInput(file);
+}
 
 int	main(int ac, char **av)
 {
-  Memory	a;
-  Bios		b;
-  std::list<IOperand *>	lol;
+  if (ac != 1 && ac != 2)
+    {
+      std::cerr << "Usage : ./avm | ./avm file" << std::endl;
+      return (0);
+    }
+  (ac == 2) ? avm(av[1]) : avm(NULL); 
+}
 
-  lol = a.getPile();
-  lol.push_back(b.createOperand(Int8, "45"));
-  std::cout << "dans la liste lol nous avons " << lol.size() << std::endl;
-  a.setPile(lol);
-  std::cout << "dans la memoire nous avons " << a.getPile().size() << std::endl;
-  lol.pop_back();
-  a.setPile(lol);
-  std::cout << "dans la memoire nous avons " << a.getPile().size() << std::endl;
   /*  try
     {
       int a;
@@ -35,4 +37,3 @@ int	main(int ac, char **av)
     {
       std::cerr << e.what() << "\n";
       }*/ 
-}
