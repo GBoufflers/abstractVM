@@ -5,11 +5,14 @@
 
 class		Io : public IIo
 {
+  std::list<std::string>	content;
 public:
   virtual ~Io();
   Io();
 
-  virtual char	* readInput(char *file);
+  virtual void	readInput(char *file);
+  virtual void	putFileInList(std::ifstream &file);
+  virtual void	putInputInList();
 };
 
 #endif
