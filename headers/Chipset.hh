@@ -2,17 +2,19 @@
 #define __CHIPSET_HH__
 
 #include	"IChipset.hh"
+#include	<map>
 
 class	Chipset : public IChipset
 {
-  std::ifstream	file;
-  std::list<std::string> instruction;
+  std::list<std::string> final;
+  std::list<std::string> &file;
+  std::map<std::string, int>	verifInstruct;
 public:
-  Chipset();
+  Chipset(std::list<std::string> &list);
   virtual ~Chipset();
-  virtual void readFile();
-  virtual void readInput();
+  virtual void parseList();
   virtual std::list<std::string>	getInstruction();
+  virtual void initMap();
 };
 
 #endif

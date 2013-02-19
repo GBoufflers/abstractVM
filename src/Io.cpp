@@ -1,13 +1,18 @@
 #include	"../headers/Io.hh"
 
-Io::Io()
+Io::Io(char *file) : _file(file)
 {
-
+  this->readInput();
 }
 
 Io::~Io()
 {
 
+}
+
+std::list<std::string>	Io::getList()
+{
+  return (this->content);
 }
 
 void	Io::putFileInList(std::ifstream &file)
@@ -16,10 +21,7 @@ void	Io::putFileInList(std::ifstream &file)
     {
       std::string	content;
       while(std::getline(file, content))
-	{
-	  this->content.push_back(content);
-	  std::cout << content << std::endl;
-	}
+	this->content.push_back(content);
     }
 }
 
@@ -33,16 +35,16 @@ void	Io::putInputInList()
     }
 }
 
-void	Io::readInput(char *file)
+void	Io::readInput()
 {
-  std::ifstream fichier(file, std::ios::in);
+  std::ifstream fichier(this->_file, std::ios::in);
 
-  if (file == NULL)
+  if (this->_file == NULL)
     putInputInList();
   else if(fichier)
     putFileInList(fichier);
   else
-    std::cerr << file <<  " : no such file found " << std::endl;
+    std::cerr << this->_file <<  " : no such file found " << std::endl;
 }
   
   
