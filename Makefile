@@ -7,7 +7,6 @@ CC=		$(CXX)
 OBJ=		core/main.o \
 		src/Memory.o \
 		src/Io.o \
-		src/busMem.o \
 		src/Bios.o \
 		src/Chipset.o \
 		src/MotherBoard.o

@@ -4,17 +4,21 @@
 #include	<list>
 #include	<string>
 #include	"ICpu.hh"
+#include	"Operand.hpp"
+#include	"Memory.hh"
 
 class	Cpu
 {
-  std::list<string>	res;
-  std::list<string>	&instruction;
+  Memory		*_mem;
+  std::list<string>	_res;
+  std::list<string>	&_instruction;
 
 public:  
   virtual ~Cpu();
   Cpu();
 
   /*******************/
+
   virtual void	add();
   virtual void	sub();
   virtual void	mul();
