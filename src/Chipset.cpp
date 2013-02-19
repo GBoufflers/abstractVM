@@ -51,10 +51,32 @@ int	Chipset::checkComa(std::string &line, char c)
   return (1);
 }
 
+std::string	&Chipset::checkParam(std::string &param, int entier)
+{
+  std::string	nbr = param.substr(1, param.size() - 2);
+  std::cout << nbr << std::endl;
+  int	a = nbr.find("-");
+    try
+      {
+	(a != -1 && a != 0) ? throw myException("Erreur de syntaxe sur le nombre") : (nbr = nbr);
+	if (entier == 1)
+	  {
+	    int found = nbr.find_first_not_of("0123456789");
+	    (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre") : param.clear();
+	    return (param = nbr);
+	  }
+	else if (entier == 0)
+	  {
+	    
+	  }
+      }
+    catch ( const std::exception & e ) { std::cerr << e.what();}
+}
+
 void	Chipset::checkComplex(std::string &instr, std::string &line)
 {
   std::string	tmp = line.substr(0, instr.size());
-  std::string	type(""), typeV(" ");
+  std::string	param(""), type(""), typeV(" ");
   int		a = 0, b = 0, c = 0;
   try
     {
@@ -74,7 +96,9 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
       tmp = line.substr(c);
       c = tmp.find(')');
       tmp = tmp.substr(0, c + 1);
-      std::cout << tmp << std::endl;
+      std::string::iterator it = tmp.begin();
+      (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException("Erreur de syntaxe sur le parametre"));
+      std::cout << "c'est un " << type << " qui a pour valeur " << param << std::endl;
     }
   catch ( const std::exception & e ) { std::cerr << e.what();}
 }
