@@ -2,13 +2,15 @@
 #define __CPU_HH__
 
 #include	<list>
+#include	<vector>
 #include	<string>
 #include	"Operand.hpp"
 #include	"Memory.hh"
 
 class	Cpu
 {
-  Memory		*_mem;
+  void				(Cpu::*creation[9])();
+  Memory			*_mem;
   std::list<std::string>	_res;
   std::list<std::string>	&_instruction;
 
@@ -17,26 +19,30 @@ public:
   virtual ~Cpu();
 
   /*******************/
-  template <typename T>
   void	add();
-  template <typename T>
   void	sub();
-  template <typename T>
   void	mul();
-  template <typename T>
   void	div();
-  template <typename T>
   void	mod();
   void	exit();
   void	pop();
   void	dump();
-  void	assert(IOperand *op);
-  void	push(std::string &instruct);
   void	print();
+
+  /**************/
+
+  void	assert(std::string &instruct);
+  void	push(std::string &instruct);
+
+  /***************/
+
   void	doDump();
   void	makePtrFunc(std::string &func);
   void	execInstruct();
   void	pushInList(std::string &str);
+  std::vector<std::string> split(char delim, std::string work);
+  void	exec(std::vector<std::string> fields);
+  void	massign(IOperand *n1, IOperand *n2);
 };
 
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
@@ -73,8 +79,8 @@ void	Cpu::dump()
   nnew = this->_mem->getPile();
   while (!nnew.empty())
     {
-      n = nnew.back();//get back de la memory
-      nnew.pop_back();//pop back
+      n = nnew.back();
+      nnew.pop_back();
       str = n->toString();
       this->pushInList(str);
     }
@@ -86,12 +92,13 @@ void	Cpu::doDump()
     std::cout << *it << std::endl;
 }
 
-void	Cpu::assert(IOperand *op)
+void	Cpu::assert(std::string &instruct)
 {
-  bool ret = op = this->_mem->mFrontGet();
+  /*  IOperand *op;
+      bool ret = (op = this->_mem->mFrontGet());
 
-  if (ret == false)
-    ;
+      if (ret == false)
+      ;*/
 }
 
 void	Cpu::print()
@@ -106,11 +113,6 @@ void	Cpu::print()
       str = n->toString();
       this->pushInList(str);
     }
-  else
-    {
-      n->setType(Int8);
-      this->assert(n);
-    }
 }
 
 void	Cpu::push(std::string &instruct)
@@ -122,103 +124,152 @@ void	Cpu::push(std::string &instruct)
   this->_mem->mFrontPush(bios.createOperand(type, value));
 }
 
-template <typename T>
+std::vector<std::string> Cpu::split(char delim, std::string work) 
+{
+  std::vector<std::string> flds;
+  work = work.data();
+  std::string buf = "";
+  int rep = 0;
+  int i = 0;
+
+  if (!flds.empty()) flds.clear();
+  while (i < work.length()) 
+    {
+      if (work[i] != delim)
+	buf += work[i];
+      else if (rep == 1) 
+	{
+	  flds.push_back(buf);
+	  buf = "";
+	}
+      else if (buf.length() > 0) 
+	{
+	  flds.push_back(buf);
+	  buf = "";
+	}
+      i++;
+    }
+  if (!buf.empty())
+    flds.push_back(buf);
+  return (flds);
+}
+
+void	Cpu::massign(IOperand *n1, IOperand *n2)
+{
+
+}
+
 void	Cpu::add()
 {
   IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
-  n = new Operand<T>;
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
+  n = *n1 + *n2;
   this->_mem->mFrontPop();
   this->_mem->mFrontPush(n);
 }
 
-template <typename T>
 void	Cpu::sub()
 {
   IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
-  n = new Operand<T>;
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
+  n = *n1 - *n2;
   this->_mem->mFrontPop();
   this->_mem->mFrontPush(n);
 }
 
-template <typename T>
 void	Cpu::mul()
 {
   IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
-  n = new Operand<T>;
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
+  n = *n1 * (*n2);
   this->_mem->mFrontPop();
   this->_mem->mFrontPush(n);
 }
 
-template <typename T>
 void	Cpu::div()
 {
   IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
-  n = new Operand<T>;
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
+  n = *n1 / *n2;
   this->_mem->mFrontPop();
   this->_mem->mFrontPush(n);
 }
 
-template <typename T>
 void	Cpu::mod()
 {
   IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
-  n = new Operand<T>;
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
+  n = *n1 % *n2;
   this->_mem->mFrontPop();
   this->_mem->mFrontPush(n);
 }
 
-
-
-void	Cpu::makePtrFunc(std::string &func)
+void	Cpu::exec(std::vector<std::string> fields)
 {
-
+  if (fields[0] == "add")
+    add();
+  else if (fields[0] == "sub")
+    sub();
+  else if (fields[0] == "mul")
+    mul();
+  else if (fields[0] == "div")
+    div();
+  else if (fields[0] == "mod")
+    mod();
+  else if (fields[0] == "exit")
+    exit();
+  else if (fields[0] == "pop")
+    pop();
+  else if (fields[0] == "dump")
+    dump();
+  else if (fields[0] == "assert")
+    assert(fields[1]);
+  else if (fields[0] == "push")
+    push(fields[1]);
+  else
+    print();
 }
 
 void	Cpu::execInstruct()
 {
-  /*  std::vector<std::string>	fields;
-      int			size;
+  std::string			str;
+  std::vector<std::string>	fields;
+  int				size;
 
-      this->initMap();
-      while (!(this->_instruction.empty()))
-      {
-      split(fields, this->_instruction.front(), is_any_of( "," ));
+  while (!(this->_instruction.empty()))
+    {
+      str = this->_instruction.front();
+      fields = split(' ', str);
       size = fields.size();
-      if (size == 1)
-      makePtrFunc(fields.front());
+      exec(fields);
       this->_instruction.pop_front();
-      }
-      this->doDump();*/
+    }
+  this->doDump();
 }
 
 #endif
