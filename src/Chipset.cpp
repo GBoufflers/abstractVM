@@ -27,7 +27,7 @@ void	Chipset::initMap()
   this->verif["exit"] = 0;
 }
 
-int	Chipset::checkComa(std::string &line)
+int	Chipset::checkComa(std::string &line, char c)
 {
   int	a = 0, b = 0;
 
@@ -36,16 +36,28 @@ int	Chipset::checkComa(std::string &line)
   std::string tmp = line.substr(0, a + 1);
   const char *str = tmp.c_str();
   a = 0;
-  while (str[a])
+  while (str[a] && str[a] != ';')
     {
-      if (str[a] == ';')
-	return (1);
-      else if (str[a] != ';')
+      if (str[a] != ';' && str[a] != c)
 	return (0);
       a++;
     }
+  return (1);
 }
 
+void	Chipset::checkSimple(std::string &instr, std::string &line)
+{
+  std::string	tmp = line.substr(0, instr.size());
+  int		a = 0;
+  try
+    {
+      (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction")) : tmp.clear();
+      tmp = line.substr(instr.size(), line.size() - instr.size());
+      a = checkComa(tmp, ' ');
+      (a == 0) ? throw myException("Erreur de syntaxe après l'instruction") : final.push_back(instr);
+    }
+  catch ( const std::exception & e ) { std::cerr << e.what();}
+}
 
 void	Chipset::checkInstruction(std::string &line)
 {
@@ -64,12 +76,7 @@ void	Chipset::checkInstruction(std::string &line)
 	}
       (a == -1) ? (throw myException("Synxtaxe incorrect")) : (a = a);
       if (verif[inst] == 0)
-	{
-	  if (inst.size() != line.size())
-	    throw myException("Synxtaxe incorrect");
-	  final.push_back(inst);
-	  return ;
-	}
+	return (checkSimple(inst, line));
     }
   catch ( const std::exception & e ) { std::cerr << e.what();}
   
@@ -79,7 +86,7 @@ void	Chipset::parseList(std::string &line)
 {
   int	nb = 0;
 
-  if((nb = this->checkComa(line)) == 1)
+  if((nb = this->checkComa(line, '\0')) == 1)
     return ((void)this->final.push_back(""));
   checkInstruction(line);
 }

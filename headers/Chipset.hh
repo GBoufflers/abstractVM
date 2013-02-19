@@ -15,8 +15,9 @@ public:
   virtual void traverseList();
   virtual void parseList(std::string &line);
   virtual void initMap();
-  virtual int  checkComa(std::string &line);
+  virtual int  checkComa(std::string &line, char c);
   virtual void checkInstruction(std::string &line);
+  virtual void checkSimple(std::string &instr, std::string &line);;
 };
 
 #endif
