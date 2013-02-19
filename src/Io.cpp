@@ -29,7 +29,7 @@ void	Io::putInputInList()
   while(input_line != ";;") 
     {
       getline(std::cin, input_line);
-      std::cout << input_line << std::endl;
+      this->content.push_back(input_line);
     }
 }
 
