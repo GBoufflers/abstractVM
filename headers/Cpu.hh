@@ -26,8 +26,10 @@ public:
   virtual void	mod();
   virtual void	exit();
   virtual void	pop();
+  virtual void	dump();
   virtual void	assert(IOperand *);
-  virtual void	push(IOperand *);
+  virtual void	push(eOperandType type, std::string &value);
+  virtual void	print();
 };
 
 #endif
