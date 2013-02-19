@@ -33,6 +33,7 @@ void	Io::putInputInList()
       getline(std::cin, input_line);
       this->content.push_back(input_line);
     }
+  this->content.pop_back();
 }
 
 void	Io::readInput()

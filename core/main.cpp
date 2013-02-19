@@ -14,7 +14,7 @@ void	avm(char *file)
   Io	a(file);
 
   std::list<std::string> lol = a.getList();
-  Chipset b(lol);
+  Chipset	b(lol);
 }
 
 int	main(int ac, char **av)

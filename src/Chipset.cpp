@@ -50,20 +50,29 @@ int	Chipset::checkComa(std::string &line)
 void	Chipset::checkInstruction(std::string &line)
 {
   int	a = -1, b = 0;
-  for (std::map<std::string, int>::const_iterator it = verif.begin(); it != verif.end(); ++it)
-    {
-      if ((a = line.find(it->first)) != -1)
-	break;
-      b++;
-    }
+  std::string	inst;
+
   try
     {
-    (a == -1) ? (throw myException("Erreur de syntaxe")) : (a = -1);
+      for (std::map<std::string, int>::const_iterator it = verif.begin(); it != verif.end(); ++it)
+	{
+	  if ((a = line.find(it->first)) != -1)
+	    {
+	      inst = it->first; break;
+	    }
+	  b++;
+	}
+      (a == -1) ? (throw myException("Synxtaxe incorrect")) : (a = a);
+      if (verif[inst] == 0)
+	{
+	  if (inst.size() != line.size())
+	    throw myException("Synxtaxe incorrect");
+	  final.push_back(inst);
+	  return ;
+	}
     }
-  catch ( const std::exception & e )
-    {
-    std::cerr << e.what() << "\n";
-    }
+  catch ( const std::exception & e ) { std::cerr << e.what();}
+  
 }
 
 void	Chipset::parseList(std::string &line)
