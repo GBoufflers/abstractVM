@@ -9,8 +9,10 @@
 class	IChipset
 {
 public:
-  virtual	void parseList() = 0;
-  virtual	std::list<std::string>	getInstruction() = 0;
+  virtual	int  checkComa(std::string &line) = 0;
+  virtual	void checkInstruction(std::string &line) = 0;
+  virtual	void traverseList() = 0;
+  virtual	void parseList(std::string &line) = 0;
   virtual	void initMap() = 0;
   virtual ~IChipset(){};
 };
