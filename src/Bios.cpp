@@ -1,6 +1,5 @@
 #include	"../headers/Bios.hh"
 #include	"../headers/enum.hh"
-
 #include	"../headers/Operand.hpp"
 
 #define		Int8	char
