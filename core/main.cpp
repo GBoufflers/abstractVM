@@ -1,3 +1,4 @@
+
 #include		<sstream>
 
 
@@ -18,8 +19,8 @@ int	main(int ac, char **av)
 {
   /*if (ac != 1 && ac != 2)
     {
-      std::cerr << "Usage : ./avm | ./avm file" << std::endl;
-      return (0);
+    std::cerr << "Usage : ./avm | ./avm file" << std::endl;
+    return (0);
     }
     (ac == 2) ? avm(av[1]) : avm(NULL); */
   std::string str="We think in generalities, but we live in details.";
