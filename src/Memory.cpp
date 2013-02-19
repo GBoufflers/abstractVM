@@ -38,9 +38,9 @@ IOperand		*Memory::mFrontPop(int pos)
 
   i = 1;
   if (this->myStackEmpty() == false)
-    ;
-  else (this->myStackSize() < 2)
-	 ;
+    std::cout << "empty stack "<< std::endl;
+  else if (this->myStackSize() < 2)
+    std::cout << "stack not enough big"<< std::endl;
   else
     for (std::list<IOperand *>::iterator it = this->mem.begin(); it != this->mem.end(); ++it)
       {
