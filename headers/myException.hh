@@ -1,7 +1,8 @@
-#ifndef __MYERROR_HH__
-#define __MYERROR_HH__
+#ifndef __MYEXCEPTION_HH__
+#define __MYEXCEPTION_HH__
 
 #include	<stdexcept>
+#include	<sstream>
 
 class myException : public std::exception
 {

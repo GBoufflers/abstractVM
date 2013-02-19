@@ -10,9 +10,10 @@ class		IIo
 public:
   /*  virtual void	dump() const = 0 ;
       virtual void	print() const = 0;*/
-  virtual void	readInput(char *file) = 0;
+  virtual void	readInput() = 0;
   virtual void  putFileInList(std::ifstream &file) = 0;
   virtual void  putInputInList() = 0;
+  virtual std::list<std::string> getList() = 0;
   virtual ~IIo(){};
 };
 
