@@ -9,7 +9,9 @@
 class	IChipset
 {
 public:
-  virtual	int  checkComa(std::string &line) = 0;
+  virtual	void checkSimple(std::string &instr, std::string &line) = 0;
+  virtual	void checkComplex(std::string &instr, std::string &line) = 0;
+  virtual	int  checkComa(std::string &line, char c) = 0;
   virtual	void checkInstruction(std::string &line) = 0;
   virtual	void traverseList() = 0;
   virtual	void parseList(std::string &line) = 0;
