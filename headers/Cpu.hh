@@ -4,6 +4,7 @@
 #include	<list>
 #include	<string>
 #include	"ICpu.hh"
+#include	"Operand.hpp"
 #include	"Memory.hh"
 
 class	Cpu

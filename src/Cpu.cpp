@@ -10,39 +10,54 @@ Cpu::~Cpu()
 
 }
 
-void	Cpu::add()
+void	Cpu::add(IOperand *n1, IOperand *n2)
 {
+  IOperand *n;
 
+  n = n1 + n2;
+  this->_mem->mFrontPush(n);
 }
 
-void	Cpu::sub()
+void	Cpu::sub(IOperand *n1, IOperand *n2)
 {
+  IOperand *n;
 
+  n = n1 - n2;
+  this->_mem->mFrontPush(n);
 }
 
-void	Cpu::mul()
+void	Cpu::mul(IOperand *n1, IOperand *n2)
 {
+  IOperand *n;
 
+  n = n1 * n2;
+  this->_mem->mFrontPush(n);
 }
 
-void	Cpu::div()
+void	Cpu::div(IOperand *n1, IOperand *n2)
 {
+  IOperand *n;
 
+  n = n1 / n2;
+  this->_mem->mFrontPush(n);
 }
 
-void	Cpu::mod()
+void	Cpu::mod(IOperand *n1, IOperand *n2)
 {
+  IOperand *n;
 
+  n = n1 % n2;
+  this->_mem->mFrontPush(n);
 }
 
 void	Cpu::exit()
 {
-
+  exit (0);
 }
 
 void	Cpu::pop()
 {
-
+  this->_mem->mFrontPop();
 }
 
 void	Cpu::assert(IOperand *op)
