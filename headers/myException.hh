@@ -11,7 +11,7 @@ public:
   myException( const char * Msg)
   {
     std::ostringstream oss;
-    oss << "Erreur : " << Msg << std::endl;
+    oss <<  Msg << std::endl;
     this->msg = oss.str();
   }
   
