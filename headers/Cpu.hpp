@@ -96,12 +96,27 @@ void	Cpu::doDump()
 }
 
 void	Cpu::assert(std::vector<std::string> fields)
-{
-  /*  IOperand *op;
-      bool ret = (op = this->_mem->mFrontGet());
-
-      if (ret == false)
-      ;*/
+{ 
+  IOperand	*op;
+  Bios		*bios;
+  eOperandType	type;
+  bool		ret;
+  
+  bios = new Bios;
+  if (fields[1] == "Int8")
+    type = Int8;
+  else if (fields[1] == "Int16")
+    type = Int16;
+  else if (fields[1] == "Int32")
+    type = Int32;
+  else if (fields[1] == "Float")
+    type = Float;
+  else
+    type = Double;
+  op = bios->createOperand(type, fields[2]);
+  ret = (op == this->_mem->mFrontGet());
+  if (ret == false)
+    ;
 }
 
 void	Cpu::print()
@@ -121,10 +136,19 @@ void	Cpu::print()
 void	Cpu::push(std::vector<std::string> fields)
 {
   Bios		bios;
-  std::string	value;
   eOperandType	type;
   
-  this->_mem->mFrontPush(bios.createOperand(type, value));
+  if (fields[1] == "Int8")
+    type = Int8;
+  else if (fields[1] == "Int16")
+    type = Int16;
+  else if (fields[1] == "Int32")
+    type = Int32;
+  else if (fields[1] == "Float")
+    type = Float;
+  else
+    type = Double;
+  this->_mem->mFrontPush(bios.createOperand(type, fields[2]));
 }
 
 std::vector<std::string> Cpu::split(char delim, std::string work) 

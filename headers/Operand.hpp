@@ -43,6 +43,7 @@ public:
   IOperand				*operator/(const IOperand &rhs) const;
   IOperand				*operator%(const IOperand &rhs) const;
   IOperand				*operator=(const IOperand &rhs);
+  bool					operator==(const IOperand &rhs) const;
 };
 
 template <typename T>
@@ -195,7 +196,15 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
 template <typename T>
 IOperand				*Operand<T>::operator=(const IOperand &rhs)
 {
+  return (this->_bios->createOperand(rhs.getType(), rhs.toString()));
+}
 
+template <typename T>
+bool					Operand<T>::operator==(const IOperand &rhs) const
+{
+  if ((this->getType() == rhs.getType()) && (this->toString() == rhs.toString()))
+    return (true);
+  return (false);
 }
 
 #endif

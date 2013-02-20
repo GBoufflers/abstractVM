@@ -21,6 +21,7 @@ public:
   virtual IOperand				*operator/(const IOperand &rhs) const = 0; // Quotient
   virtual IOperand				*operator%(const IOperand &rhs) const = 0; // Modulo
   virtual IOperand				*operator=(const IOperand &rhs) = 0; // equal
+  virtual bool					operator==(const IOperand &rhs) const = 0; // comparaison
   virtual ~IOperand(){};
 };
 
