@@ -3,7 +3,7 @@
 #include	"../headers/Cpu.hpp"
 #include	<algorithm>
 
-Chipset::Chipset(std::list<std::string> &list) : file(list)
+Chipset::Chipset(std::list<std::string> &list) : file(list), num(1)
 {
   initMap();
   try
@@ -63,23 +63,21 @@ std::string	&Chipset::checkParam(std::string &param, int entier)
   int	a = nbr.find("-"), b = 0;
 
 
-  (a != -1 && a != 0) ? throw myException("Erreur de syntaxe sur le nombre") : nbr = nbr;
+  (a != -1 && a != 0) ? throw myException("Erreur de syntaxe sur le nombre", num) : nbr = nbr;
   if (a == 0)
     nbr = nbr.substr(1, nbr.size() - 1);
   if (entier == 1)
     {
-      int found = nbr.find_first_not_of("0123456789");
-      (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre") : param.clear();
+      ((nbr.find_first_not_of("0123456789")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
       return (param = sav);
     }
   else if (entier == 0)
     {
-      int found = nbr.find_first_not_of("0123456789.");
-      (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre") : param.clear();
+      ((nbr.find_first_not_of("0123456789.")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
       a = nbr.find(".");
-      (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée") : b = nbr.rfind(".");
-      (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée") : (a = b);
-      ((a == 0 || a == (nbr.size() - 1))) ? throw myException("Erreur : la valeur du type n'est pas respectée") : param = sav;
+      (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : b = nbr.rfind(".");
+      (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : (a = b);
+      ((a == 0 || a == (nbr.size() - 1))) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : param = sav;
       return (param);
     }
 }
@@ -102,7 +100,7 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
   std::string	param(""), type(""), typeV(" "), tmp(line.substr(0, instr.size()));
   int		a = 0, b = 0, c = 0;
 
-  (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction")) : tmp.clear();
+  (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   for (std::map<std::string, int>::const_iterator it = verifC.begin(); it != verifC.end(); ++it)
     {
       if ((a = line.find(it->first)) != -1)
@@ -111,19 +109,19 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
 	}
       b++;
     }
-  (type == "") ? (throw myException("Erreur : le type n'existe pas")) : tmp = line.substr(instr.size(), type.size() + 1);
+  (type == "") ? (throw myException("Erreur : le type n'existe pas", num)) : tmp = line.substr(instr.size(), type.size() + 1);
   typeV.append(type);
-  (tmp != typeV) ? (throw myException("Erreur de syntaxe sur le type")) : tmp.clear();
+  (tmp != typeV) ? (throw myException("Erreur de syntaxe sur le type", num)) : tmp.clear();
   c = instr.size() + typeV.size();
   tmp = line.substr(c);
   c = tmp.find(')');
   tmp = tmp.substr(0, c + 1);
   std::string::iterator it = tmp.begin();
-  (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException("Erreur de syntaxe sur le parametre"));
+  (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException("Erreur de syntaxe sur le parametre", num));
   a = typeV.size() + instr.size() + tmp.size() + 2;
   type = line.substr(a, line.size() - a);
   a = checkComa(type, ' ');
-  (a == 0) ? throw myException("Erreur de syntaxe après l'instruction") : putComplexInList(instr, typeV, param);
+  (a == 0) ? throw myException("Erreur de syntaxe après l'instruction", num) : putComplexInList(instr, typeV, param);
 }
 
 void	Chipset::checkSimple(std::string &instr, std::string &line)
@@ -131,10 +129,10 @@ void	Chipset::checkSimple(std::string &instr, std::string &line)
   std::string	tmp = line.substr(0, instr.size());
   int		a = 0;
 
-  (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction")) : tmp.clear();
+  (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   tmp = line.substr(instr.size(), line.size() - instr.size());
   a = checkComa(tmp, ' ');
-  (a == 0) ? throw myException("Erreur de syntaxe après l'instruction") : final.push_back(instr);
+  (a == 0) ? throw myException("Erreur de syntaxe après l'instruction", num) : final.push_back(instr);
 }
 
 void	Chipset::checkInstruction(std::string &line)
@@ -150,7 +148,7 @@ void	Chipset::checkInstruction(std::string &line)
 	}
       b++;
     }
-  (a == -1) ? (throw myException("Synxtaxe incorrect")) : (a = a);
+  (a == -1) ? (throw myException("Synxtaxe incorrect", num)) : (a = a);
   if (verif[inst] == 0)
     return (checkSimple(inst, line));
   else
@@ -161,8 +159,7 @@ void	Chipset::parseList(std::string &line)
 {
   int	nb = 0;
 
-  
-  /*if((nb = this->checkComa(line, '\0')) == 1)
+    /*if((nb = this->checkComa(line, '\0')) == 1)
     return((void)this->final.push_back(""));
     checkInstruction(line);*/
   if((nb = this->checkComa(line, '\0')) != 1)
@@ -175,10 +172,11 @@ void Chipset::traverseList()
     {
       std::string tmp = *it;      
       this->parseList(tmp);
+      this->num++;
     }
-  for (std::list<std::string>::const_iterator it = final.begin(); it != final.end(); ++it)
+  /*for (std::list<std::string>::const_iterator it = final.begin(); it != final.end(); ++it)
     {
       std::string tmp = *it;      
       std::cout << tmp << std::endl;
-    }
+      }*/
 }
