@@ -1,5 +1,6 @@
 #include	"../headers/Chipset.hh"
 #include	"../headers/myException.hh"
+#include	"../headers/Cpu.hpp"
 #include	<algorithm>
 
 Chipset::Chipset(std::list<std::string> &list) : file(list)
