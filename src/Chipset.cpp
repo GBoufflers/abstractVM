@@ -103,15 +103,14 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
   typeV.append(type);
   (tmp != typeV) ? (throw myException("Erreur de syntaxe sur le type")) : tmp.clear();
   c = instr.size() + typeV.size();
-  std::cout << type << " " << typeV << std::endl;
   tmp = line.substr(c);
-  //std::cout << tmp << std::endl;
   c = tmp.find(')');
   tmp = tmp.substr(0, c + 1);
   std::string::iterator it = tmp.begin();
- 
   (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException("Erreur de syntaxe sur le parametre"));
   std::cout << "c'est un " << type << " qui a pour valeur " << param << std::endl;
+  std::cout << line << std::endl;
+  std::cout << instr << typeV << "(" << tmp << ")" << std::endl;
 }
 
 void	Chipset::checkSimple(std::string &instr, std::string &line)
