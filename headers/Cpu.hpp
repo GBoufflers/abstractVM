@@ -3,16 +3,18 @@
 
 #include	<list>
 #include	<vector>
+#include	<map>
 #include	<string>
 #include	"Operand.hpp"
 #include	"Memory.hh"
 
 class	Cpu
 {
-  void				(Cpu::*creation[9])();
-  Memory			*_mem;
-  std::list<std::string>	_res;
-  std::list<std::string>	&_instruction;
+  void					(Cpu::*creation[9])();
+  Memory				*_mem;
+  std::multimap<std::string, int>	mmap;
+  std::list<std::string>		_res;
+  std::list<std::string>		&_instruction;
 
 public:
   Cpu(std::list<std::string> &);
@@ -31,8 +33,8 @@ public:
 
   /**************/
 
-  void	assert(std::string &instruct);
-  void	push(std::string &instruct);
+  void	assert(std::vector<std::string> fields);
+  void	push(std::vector<std::string> fields);
 
   /***************/
 
@@ -41,8 +43,9 @@ public:
   void	execInstruct();
   void	pushInList(std::string &str);
   std::vector<std::string> split(char delim, std::string work);
-  void	exec(std::vector<std::string> fields);
-  void	massign(IOperand *n1, IOperand *n2);
+  int	exec(std::string func, std::vector<std::string> fields);
+  void	initPtrFunc();
+  void	initMap();
 };
 
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
@@ -92,7 +95,7 @@ void	Cpu::doDump()
     std::cout << *it << std::endl;
 }
 
-void	Cpu::assert(std::string &instruct)
+void	Cpu::assert(std::vector<std::string> fields)
 {
   /*  IOperand *op;
       bool ret = (op = this->_mem->mFrontGet());
@@ -115,7 +118,7 @@ void	Cpu::print()
     }
 }
 
-void	Cpu::push(std::string &instruct)
+void	Cpu::push(std::vector<std::string> fields)
 {
   Bios		bios;
   std::string	value;
@@ -152,11 +155,6 @@ std::vector<std::string> Cpu::split(char delim, std::string work)
   if (!buf.empty())
     flds.push_back(buf);
   return (flds);
-}
-
-void	Cpu::massign(IOperand *n1, IOperand *n2)
-{
-
 }
 
 void	Cpu::add()
@@ -229,30 +227,48 @@ void	Cpu::mod()
   this->_mem->mFrontPush(n);
 }
 
-void	Cpu::exec(std::vector<std::string> fields)
+void	Cpu::initPtrFunc()
 {
-  if (fields[0] == "add")
-    add();
-  else if (fields[0] == "sub")
-    sub();
-  else if (fields[0] == "mul")
-    mul();
-  else if (fields[0] == "div")
-    div();
-  else if (fields[0] == "mod")
-    mod();
-  else if (fields[0] == "exit")
-    exit();
-  else if (fields[0] == "pop")
-    pop();
-  else if (fields[0] == "dump")
-    dump();
-  else if (fields[0] == "assert")
-    assert(fields[1]);
-  else if (fields[0] == "push")
-    push(fields[1]);
-  else
-    print();
+  this->creation[0] = &Cpu::add;
+  this->creation[1] = &Cpu::sub;
+  this->creation[2] = &Cpu::mul;
+  this->creation[3] = &Cpu::div;
+  this->creation[4] = &Cpu::mod;
+  this->creation[5] = &Cpu::exit;
+  this->creation[6] = &Cpu::pop;
+  this->creation[7] = &Cpu::dump;
+  this->creation[8] = &Cpu::print;
+}
+
+void	Cpu::initMap()
+{
+  this->mmap.insert(std::pair<std::string ,int>("add", 0));
+  this->mmap.insert(std::pair<std::string ,int>("sub", 1));
+  this->mmap.insert(std::pair<std::string ,int>("mul", 2));
+  this->mmap.insert(std::pair<std::string ,int>("div", 3));
+  this->mmap.insert(std::pair<std::string ,int>("mod", 4));
+  this->mmap.insert(std::pair<std::string ,int>("exit", 5));
+  this->mmap.insert(std::pair<std::string ,int>("pop", 6));
+  this->mmap.insert(std::pair<std::string ,int>("dump", 7));
+  this->mmap.insert(std::pair<std::string ,int>("print", 8));
+}
+
+int	Cpu::exec(std::string func, std::vector<std::string> fields)
+{
+  std::multimap<std::string,int>::iterator it;
+  int		ret = -1;
+
+  func = fields.front();
+  for (it = this->mmap.begin(); it != this->mmap.end(); ++it)
+    {
+      if ((*it).first == func)
+	{
+	  ret = (*it).second;
+	  (this->*creation[ret])();
+	  return (ret);
+	}
+    }
+  return (-1);
 }
 
 void	Cpu::execInstruct()
@@ -266,7 +282,13 @@ void	Cpu::execInstruct()
       str = this->_instruction.front();
       fields = split(' ', str);
       size = fields.size();
-      exec(fields);
+      if (exec(fields.front(), fields) == -1)
+	{
+	  if (fields.front() == "assert")
+	    this->assert(fields);
+	  else
+	    this->push(fields);
+	}
       this->_instruction.pop_front();
     }
   this->doDump();
