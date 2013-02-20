@@ -9,6 +9,7 @@
 class	IChipset
 {
 public:
+  virtual	std::string &checkParam(std::string &param, int size) = 0;
   virtual	void checkSimple(std::string &instr, std::string &line) = 0;
   virtual	void checkComplex(std::string &instr, std::string &line) = 0;
   virtual	int  checkComa(std::string &line, char c) = 0;
