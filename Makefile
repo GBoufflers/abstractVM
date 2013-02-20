@@ -9,6 +9,7 @@ OBJ=		core/main.o \
 		src/Io.o \
 		src/Bios.o \
 		src/Chipset.o \
+		src/Cpu.o \
 		src/MotherBoard.o
 
 all: $(NAME)
