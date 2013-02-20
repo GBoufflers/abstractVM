@@ -2,7 +2,7 @@
 ; sample.avm -
 ; -------------
 ;push int32(-42) ;;
-push int32(lol)   
+push int32(78945)   
 add;
 push float(-44.55)
 mul

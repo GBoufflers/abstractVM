@@ -38,6 +38,10 @@ void	Chipset::initMap()
   this->verifC["float"] = 0;
 }
 
+/* regarde si des ; sont présents dans la chaine passée en paramètre
+ 
+   si la valeur de retour est 0 , il y a une erreur de syntaxe */
+
 int	Chipset::checkComa(std::string &line, char c)
 {
   int	a = 0, b = 0;
@@ -55,6 +59,10 @@ int	Chipset::checkComa(std::string &line, char c)
     }
   return (1);
 }
+
+/* verifie la syntaxe des paramètres selon que ce soit un entier ou un nombre à virgule 
+   
+   utilise un algo de la stl , et la position des points pour définir si c'est bon */
 
 std::string	&Chipset::checkParam(std::string &param, int entier)
 {
@@ -82,6 +90,10 @@ std::string	&Chipset::checkParam(std::string &param, int entier)
     }
 }
 
+/* concatene correctement la chaine finale d'une instruction complexe correcte
+
+   elle met ensuite le tout dans la liste finale envoyée au processeur */
+
 void	Chipset::putComplexInList(std::string &instr, std::string &type, std::string &val)
 {
   std::string toSend;
@@ -94,6 +106,8 @@ void	Chipset::putComplexInList(std::string &instr, std::string &type, std::strin
   toSend.append(val);
   final.push_back(toSend);
 }
+
+/* verifie les paramètres assert et push */
 
 void	Chipset::checkComplex(std::string &instr, std::string &line)
 {
@@ -124,6 +138,8 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
   (a == 0) ? throw myException("Erreur de syntaxe après l'instruction", num) : putComplexInList(instr, typeV, param);
 }
 
+/*  verifie tous les paramètres ne prenant pas d'arguments */
+
 void	Chipset::checkSimple(std::string &instr, std::string &line)
 {
   std::string	tmp = line.substr(0, instr.size());
@@ -134,6 +150,8 @@ void	Chipset::checkSimple(std::string &instr, std::string &line)
   a = checkComa(tmp, ' ');
   (a == 0) ? throw myException("Erreur de syntaxe après l'instruction", num) : final.push_back(instr);
 }
+
+/* verifie que l'instruction existe, et apelle la verification adéquate des paramètres */
 
 void	Chipset::checkInstruction(std::string &line)
 {
@@ -159,9 +177,6 @@ void	Chipset::parseList(std::string &line)
 {
   int	nb = 0;
 
-    /*if((nb = this->checkComa(line, '\0')) == 1)
-    return((void)this->final.push_back(""));
-    checkInstruction(line);*/
   if((nb = this->checkComa(line, '\0')) != 1)
     checkInstruction(line);
 }
@@ -174,9 +189,4 @@ void Chipset::traverseList()
       this->parseList(tmp);
       this->num++;
     }
-  /*for (std::list<std::string>::const_iterator it = final.begin(); it != final.end(); ++it)
-    {
-      std::string tmp = *it;      
-      std::cout << tmp << std::endl;
-      }*/
 }
