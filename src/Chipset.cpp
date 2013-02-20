@@ -58,23 +58,29 @@ int	Chipset::checkComa(std::string &line, char c)
 std::string	&Chipset::checkParam(std::string &param, int entier)
 {
   std::string	nbr = param.substr(1, param.size() - 2);
-  std::cout << nbr << std::endl;
-  int	a = nbr.find("-");
+  std::string	sav(nbr);
+  std::cout << sav << std::endl;
+  int	a = nbr.find("-"), b = 0;
 
 
   (a != -1 && a != 0) ? throw myException("Erreur de syntaxe sur le nombre") : nbr = nbr;
   if (a == 0)
     nbr = nbr.substr(1, nbr.size() - 1);
-  std::cout << nbr << std::endl;
   if (entier == 1)
     {
       int found = nbr.find_first_not_of("0123456789");
       (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre") : param.clear();
-      return (param = nbr);
+      return (param = sav);
     }
   else if (entier == 0)
     {
-      
+      int found = nbr.find_first_not_of("0123456789.");
+      (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre") : param.clear();
+      a = nbr.find(".");
+      (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée") : b = nbr.rfind(".");
+      (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée") : (a = b);
+      ((a == 0 || a == (nbr.size() - 1))) ? throw myException("Erreur : la valeur du type n'est pas respectée") : param = sav;
+      return (param);
     }
 }
 
@@ -96,14 +102,16 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
   (type == "") ? (throw myException("Erreur : le type n'existe pas")) : tmp = line.substr(instr.size(), type.size() + 1);
   typeV.append(type);
   (tmp != typeV) ? (throw myException("Erreur de syntaxe sur le type")) : tmp.clear();
-  c = type.size() + typeV.size() - 1;
+  c = instr.size() + typeV.size();
+  std::cout << type << " " << typeV << std::endl;
   tmp = line.substr(c);
+  //std::cout << tmp << std::endl;
   c = tmp.find(')');
   tmp = tmp.substr(0, c + 1);
   std::string::iterator it = tmp.begin();
+ 
   (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException("Erreur de syntaxe sur le parametre"));
   std::cout << "c'est un " << type << " qui a pour valeur " << param << std::endl;
-
 }
 
 void	Chipset::checkSimple(std::string &instr, std::string &line)
