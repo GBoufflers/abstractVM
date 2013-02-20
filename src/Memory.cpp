@@ -32,21 +32,20 @@ int			Memory::myStackSize() const
   return (this->mem.size());
 }
 
-IOperand		*Memory::mFrontPop(int pos)
+IOperand		*Memory::mFrontGet()
 {
-  int	i;
-
-  i = 1;
   if (this->myStackEmpty() == false)
     std::cout << "empty stack "<< std::endl;
-  else if (this->myStackSize() < 2)
-    std::cout << "stack not enough big"<< std::endl;
   else
-    for (std::list<IOperand *>::iterator it = this->mem.begin(); it != this->mem.end(); ++it)
-      {
-	if (i == pos)
-	  return (*it);
-      }
+    return (this->mem.front());
+}
+
+void			Memory::mFrontPop()
+{
+  if (this->myStackEmpty() == false)
+    std::cout << "empty stack "<< std::endl;
+  else
+    return (this->mem.pop_front());
 }
 
 void			Memory::mFrontPush(IOperand *n)

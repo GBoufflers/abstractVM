@@ -33,11 +33,16 @@ public:
 
   /*************/
 
+  void					setType(eOperandType type);
+
+  /*************/
+
   IOperand				*operator+(const IOperand &rhs) const;
   IOperand				*operator-(const IOperand &rhs) const;
   IOperand				*operator*(const IOperand &rhs) const;
   IOperand				*operator/(const IOperand &rhs) const;
   IOperand				*operator%(const IOperand &rhs) const;
+  bool					operator=(const IOperand &rhs) const;
 };
 
 template <typename T>
@@ -74,6 +79,13 @@ eOperandType				Operand<T>::getType() const
   return (this->_type);
 }
 
+  /*************/
+
+template <typename T>
+void					Operand<T>::setType(eOperandType type)
+{
+  this->_type = type;
+}
   /*************/
 
 template <typename T>
@@ -178,6 +190,14 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
   if (this->getType() < rhs.getType())
     t = rhs.getType();
   return(this->_bios->createOperand(t, ss.str()));
+}
+
+template <typename T>
+bool				Operand<T>::operator=(const IOperand &rhs) const
+{
+  if ((this->toString() == rhs.toString()) && (this->getType() == rhs.getType()))
+    return (true);
+  return (false);
 }
 
 #endif

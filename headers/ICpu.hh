@@ -18,8 +18,10 @@ public:
   virtual void	mod() = 0;
   virtual void	exit() = 0;
   virtual void	pop() = 0;
+  virtual void	dump() = 0;
   virtual void	assert(IOperand *) = 0;
   virtual void	push(IOperand *) = 0;
+  virtual void	print() = 0;
 };
 
 #endif

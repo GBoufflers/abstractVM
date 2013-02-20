@@ -13,14 +13,14 @@ public:
   virtual int					getPrecision() const = 0; // Renvoie la precision du type de l'instance
   virtual eOperandType				getType() const = 0; // Renvoie le type de l'instance. Voir plus bas
 
+  virtual void					setType(eOperandType type) = 0; // set un type
+
   virtual IOperand				*operator+(const IOperand &rhs) const = 0; // Somme
   virtual IOperand				*operator-(const IOperand &rhs) const = 0; // Difference
   virtual IOperand				*operator*(const IOperand &rhs) const = 0; // Produit
   virtual IOperand				*operator/(const IOperand &rhs) const = 0; // Quotient
   virtual IOperand				*operator%(const IOperand &rhs) const = 0; // Modulo
-
-
-
+  virtual bool					operator=(const IOperand &rhs) const = 0;
 
   virtual ~IOperand(){};
 };
