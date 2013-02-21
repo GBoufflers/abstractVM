@@ -68,14 +68,12 @@ std::string	&Chipset::checkParam(std::string &param, int entier)
     nbr = nbr.substr(1, nbr.size() - 1);
   if (entier == 1)
     {
-      int found = nbr.find_first_not_of("0123456789");
-      (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
+      ((nbr.find_first_not_of("0123456789")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
       return (param = sav);
     }
   else if (entier == 0)
     {
-      int found = nbr.find_first_not_of("0123456789.");
-      (found != -1 && found != 0) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
+      ((nbr.find_first_not_of("0123456789.")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
       a = nbr.find(".");
       (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : b = nbr.rfind(".");
       (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : (a = b);
