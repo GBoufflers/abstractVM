@@ -1,4 +1,5 @@
 #include	<string>
+#include	"../headers/myException.hh"
 #include	"../headers/Memory.hh"
 #include	"../headers/IOperand.hh"
 
@@ -36,8 +37,7 @@ IOperand		*Memory::mFrontGet()
 {
   if (this->myStackEmpty())
     {
-      std::cout << "empty stack "<< std::endl;
-      return NULL;
+      throw myException("emtpy stack !", 0);
     }
   else
     return(this->mem.front());
@@ -46,7 +46,7 @@ IOperand		*Memory::mFrontGet()
 void			Memory::mFrontPop()
 {
   if (this->myStackEmpty())
-    std::cout << "empty stack "<< std::endl;
+    throw myException("emtpy stack !", 0);
   else
     this->mem.pop_front();
 }
