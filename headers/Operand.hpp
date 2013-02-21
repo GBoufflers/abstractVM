@@ -13,7 +13,7 @@ class	Operand : public IOperand
 {
 private:
   T	  				_value;
-  std::string				const & _svalue;
+  std::string				const  _svalue;
   int					_prec;
   eOperandType				_type;
   Bios					*_bios;

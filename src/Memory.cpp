@@ -35,27 +35,35 @@ int			Memory::myStackSize() const
 IOperand		*Memory::mFrontGet()
 {
   if (this->myStackEmpty() == false)
-    std::cout << "empty stack "<< std::endl;
-  //else
-  return (this->mem.front());
+    {
+      std::cout << "empty stack "<< std::endl;
+      return NULL;
+    }
+  else
+    return(this->mem.front());
 }
 
 void			Memory::mFrontPop()
 {
   if (this->myStackEmpty() == false)
     std::cout << "empty stack "<< std::endl;
-  //else
-  return (this->mem.pop_front());
+  else
+    this->mem.pop_front();
 }
 
 void			Memory::mFrontPush(IOperand *n)
 {
+  for (std::list<IOperand *>::const_iterator it = mem.begin(); it != mem.end(); ++it)
+    {
+      IOperand *tmp = *it;    
+      std::cout << tmp->toString() << std::endl;
+    }
   std::cout << "on push la mere a flo" << std::endl;
   this->mem.push_front(n);
   std::cout << "c'était trpop bon" << std::endl;
   for (std::list<IOperand *>::const_iterator it = mem.begin(); it != mem.end(); ++it)
     {
-      IOperand *tmp = *it;    
-      std::cout << tmp->toString() << std::endl;
+      IOperand *tmp1 = *it;    
+      std::cout << tmp1->toString() << std::endl;
     }
 }

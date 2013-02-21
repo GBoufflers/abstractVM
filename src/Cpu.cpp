@@ -263,6 +263,8 @@ void	Cpu::execInstruct()
 
   while (!(this->_instruction.empty()))
     {
+      fields.clear();
+      str.clear();
       str = this->_instruction.front();
       fields = split(' ', str);
       if ((exec(fields.front())) == -1)
