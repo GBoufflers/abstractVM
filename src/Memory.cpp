@@ -36,16 +36,16 @@ IOperand		*Memory::mFrontGet()
 {
   if (this->myStackEmpty() == false)
     std::cout << "empty stack "<< std::endl;
-  else
-    return (this->mem.front());
+  //else
+  return (this->mem.front());
 }
 
 void			Memory::mFrontPop()
 {
   if (this->myStackEmpty() == false)
     std::cout << "empty stack "<< std::endl;
-  else
-    return (this->mem.pop_front());
+  //else
+  return (this->mem.pop_front());
 }
 
 void			Memory::mFrontPush(IOperand *n)

@@ -166,13 +166,13 @@ IOperand				*Operand<T>::operator/(const IOperand &rhs) const
 template <>
 inline IOperand				*Operand<float>::operator%(const IOperand &rhs) const
 {
-
+  return NULL;
 }
 
 template <>
 inline IOperand				*Operand<double>::operator%(const IOperand &rhs) const
 {
-
+  return NULL;
 }
 
 template <typename T>

@@ -44,7 +44,7 @@ void	Chipset::initMap()
 
 int	Chipset::checkComa(std::string &line, char c)
 {
-  int	a = 0, b = 0;
+  int	a = 0;
 
   if ((a = line.find(";")) == -1)
     return (-1);
@@ -79,15 +79,15 @@ std::string	&Chipset::checkParam(std::string &param, int entier)
       ((nbr.find_first_not_of("0123456789")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
       return (param = sav);
     }
-  else if (entier == 0)
-    {
-      ((nbr.find_first_not_of("0123456789.")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
-      a = nbr.find(".");
-      (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : b = nbr.rfind(".");
-      (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : (a = b);
-      ((a == 0 || a == (nbr.size() - 1))) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : param = sav;
-      return (param);
-    }
+  //else if (entier == 0)
+  //    {
+  ((nbr.find_first_not_of("0123456789.")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
+  a = nbr.find(".");
+  (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : b = nbr.rfind(".");
+  (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : (a = b);
+  ((a == 0 || (size_t)a == (nbr.size() - 1))) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : param = sav;
+  return (param);
+  // }
 }
 
 /* concatene correctement la chaine finale d'une instruction complexe correcte
@@ -155,18 +155,18 @@ void	Chipset::checkSimple(std::string &instr, std::string &line)
 
 void	Chipset::checkInstruction(std::string &line)
 {
-  int	a = -1, b = 0;
+  //int	a = -1;
+  size_t	a = std::string::npos;;
   std::string	inst;
 
   for (std::map<std::string, int>::const_iterator it = verif.begin(); it != verif.end(); ++it)
     {
-      if ((a = line.find(it->first)) != -1)
+      if ((a = line.find(it->first)) != std::string::npos)
 	{
 	  inst = it->first; break;
 	}
-      b++;
     }
-  (a == -1) ? (throw myException("Synxtaxe incorrect", num)) : (a = a);
+  (a == std::string::npos) ? (throw myException("Synxtaxe incorrect", num)) : (a = a);
   if (verif[inst] == 0)
     return (checkSimple(inst, line));
   else

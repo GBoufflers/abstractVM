@@ -55,8 +55,7 @@ IOperand *	Bios::createDouble(const std::string & value)
 
 IOperand *	Bios::createOperand(eOperandType type, const std::string &value)
 {
-  int		a = 0;
-
   if (type >= 0 && type <= 4)
     return ((this->*creation[type])(value));
+  return NULL;
 }

@@ -6,11 +6,11 @@
 
 class	Chipset : public IChipset
 {
-  int	num;
   std::list<std::string> final;
   std::list<std::string> &file;
   std::map<std::string, int>	verif;
   std::map<std::string, int>	verifC;
+  int	num;
 public:
   Chipset(std::list<std::string> &list);
   virtual ~Chipset();

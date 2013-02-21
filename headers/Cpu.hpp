@@ -157,7 +157,7 @@ std::vector<std::string> Cpu::split(char delim, std::string work)
   work = work.data();
   std::string buf = "";
   int rep = 0;
-  int i = 0;
+  unsigned i = 0;
 
   if (!flds.empty()) flds.clear();
   while (i < work.length()) 
@@ -299,13 +299,13 @@ void	Cpu::execInstruct()
 {
   std::string			str;
   std::vector<std::string>	fields;
-  int				size;
+  //int				size;
 
   while (!(this->_instruction.empty()))
     {
       str = this->_instruction.front();
       fields = split(' ', str);
-      size = fields.size();
+      //size = fields.size();
       if (exec(fields.front(), fields) == -1)
 	{
 	  if (fields.front() == "assert")
