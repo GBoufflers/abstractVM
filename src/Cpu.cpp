@@ -2,7 +2,10 @@
 
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
 {
-
+  this->_mem = new Memory();
+  initMap();
+  initPtrFunc();
+  execInstruct();
 }
 
 Cpu::~Cpu()
@@ -89,14 +92,14 @@ void	Cpu::push(std::vector<std::string> fields)
 {
   Bios		bios;
   eOperandType	type;
-  
-  if (fields[1] == "Int8")
+
+  if (fields[1] == "int8")
     type = Int8;
-  else if (fields[1] == "Int16")
-    type = Int16;
-  else if (fields[1] == "Int32")
+  else if (fields[1] == "int16")
+      type = Int16;
+  else if (fields[1] == "int32")
     type = Int32;
-  else if (fields[1] == "Float")
+  else if (fields[1] == "float")
     type = Float;
   else
     type = Double;
@@ -106,45 +109,48 @@ void	Cpu::push(std::vector<std::string> fields)
 std::vector<std::string> Cpu::split(char delim, std::string work) 
 {
   std::vector<std::string> flds;
-  work = work.data();
   std::string buf = "";
-  int rep = 0;
-  unsigned i = 0;
+  work = work.data();
+  size_t	i = 0;
 
-  if (!flds.empty()) flds.clear();
+  if (!flds.empty()) 
+    flds.clear();
   while (i < work.length()) 
     {
-      if (work[i] != delim)
-	buf += work[i];
-      else if (rep == 1) 
+      while (work[i] != delim && i < work.length() )
 	{
-	  flds.push_back(buf);
-	  buf = "";
+	  buf += work[i];
+	  i++;
 	}
-      else if (buf.length() > 0) 
-	{
-	  flds.push_back(buf);
-	  buf = "";
-	}
-      i++;
+      flds.push_back(buf);
+      buf = "";
+      while (work[i] == delim && i < work.length() )
+	i++;
     }
-  if (!buf.empty())
-    flds.push_back(buf);
   return (flds);
 }
 
 void	Cpu::add()
 {
-  IOperand *n;
+  //  IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
+  std::cout << "1" << std::endl;
   n1 = this->_mem->mFrontGet();
+  //std::cout << n1->toString() << std::endl;
+  std::cout << "2" << std::endl;
   this->_mem->mFrontPop();
+  std::cout << "3" << std::endl;
   n2 = this->_mem->mFrontGet();
-  n = *n1 + *n2;
+  //  std::cout << n2->toString() << std::endl;
+  std::cout << "4" << std::endl;
+  //  n = *n1 + *n2;
+  std::cout << "pute" << std::endl;
   this->_mem->mFrontPop();
-  this->_mem->mFrontPush(n);
+  std::cout << "5" << std::endl;
+  //  this->_mem->mFrontPush(n);
+  std::cout << "6" << std::endl;
 }
 
 void	Cpu::sub()
@@ -218,29 +224,32 @@ void	Cpu::initPtrFunc()
 
 void	Cpu::initMap()
 {
-  this->mmap.insert(std::pair<std::string ,int>("add", 0));
-  this->mmap.insert(std::pair<std::string ,int>("sub", 1));
-  this->mmap.insert(std::pair<std::string ,int>("mul", 2));
-  this->mmap.insert(std::pair<std::string ,int>("div", 3));
-  this->mmap.insert(std::pair<std::string ,int>("mod", 4));
-  this->mmap.insert(std::pair<std::string ,int>("exit", 5));
-  this->mmap.insert(std::pair<std::string ,int>("pop", 6));
-  this->mmap.insert(std::pair<std::string ,int>("dump", 7));
-  this->mmap.insert(std::pair<std::string ,int>("print", 8));
+  this->mmap["add"] = 0;
+  this->mmap["sub"] = 1;
+  this->mmap["mul"] = 2;
+  this->mmap["div"] = 3;
+  this->mmap["mod"] = 4;
+  this->mmap["exit"] = 5;
+  this->mmap["pop"] = 6;
+  this->mmap["dump"] = 7;
+  this->mmap["print"] = 8;
 }
 
-int	Cpu::exec(std::string func, std::vector<std::string> fields)
+int	Cpu::exec(std::string func)
 {
-  std::multimap<std::string,int>::iterator it;
   int		ret = -1;
 
-  func = fields.front();
-  for (it = this->mmap.begin(); it != this->mmap.end(); ++it)
+  for (std::map<std::string,int>::const_iterator it = this->mmap.begin(); it != this->mmap.end(); ++it)
     {
-      if ((*it).first == func)
+      //  std::cout << "on recherche activement ce batard : " << func << std::endl;
+      std::string tmp = it->first;
+      //      std::cout << tmp << std::endl;
+      if (tmp == func)
 	{
-	  ret = (*it).second;
+	  ret = it->second;
+	  //  std::cout << "ass licking" << std::endl;
 	  (this->*creation[ret])();
+	  // std::cout << "cock sucker" << std::endl;
 	  return (ret);
 	}
     }
@@ -251,14 +260,12 @@ void	Cpu::execInstruct()
 {
   std::string			str;
   std::vector<std::string>	fields;
-  //int				size;
 
   while (!(this->_instruction.empty()))
     {
       str = this->_instruction.front();
       fields = split(' ', str);
-      //size = fields.size();
-      if (exec(fields.front(), fields) == -1)
+      if ((exec(fields.front())) == -1)
 	{
 	  if (fields.front() == "assert")
 	    this->assert(fields);

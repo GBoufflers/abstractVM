@@ -12,7 +12,7 @@ class	Cpu
 {
   void					(Cpu::*creation[9])();
   Memory				*_mem;
-  std::multimap<std::string, int>	mmap;
+  std::map<std::string, int>	mmap;
   std::list<std::string>		_res;
   std::list<std::string>		&_instruction;
 
@@ -43,7 +43,7 @@ public:
   void	execInstruct();
   void	pushInList(std::string &str);
   std::vector<std::string> split(char delim, std::string work);
-  int	exec(std::string func, std::vector<std::string> fields);
+  int	exec(std::string func);
   void	initPtrFunc();
   void	initMap();
 };

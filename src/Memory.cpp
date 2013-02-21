@@ -4,7 +4,7 @@
 
 Memory::Memory()
 {
-  std::cout << "nous sommes dans memory" << std::endl;
+
 }
 
 Memory::~Memory()
@@ -50,5 +50,12 @@ void			Memory::mFrontPop()
 
 void			Memory::mFrontPush(IOperand *n)
 {
+  std::cout << "on push la mere a flo" << std::endl;
   this->mem.push_front(n);
+  std::cout << "c'était trpop bon" << std::endl;
+  for (std::list<IOperand *>::const_iterator it = mem.begin(); it != mem.end(); ++it)
+    {
+      IOperand *tmp = *it;    
+      std::cout << tmp->toString() << std::endl;
+    }
 }

@@ -49,7 +49,7 @@ public:
 template <typename T>
 Operand<T>::Operand(const std::string &value) : _svalue(value)
 {
-  std::cout << "nous avons créé une operande de valeur " << value << std::endl;
+  std::cout << "creation doperand " << _svalue << std::endl;
 }
 
 template <typename T>
@@ -91,7 +91,7 @@ void					Operand<T>::setType(eOperandType type)
 
 template <typename T>
 IOperand				*Operand<T>::operator+(const IOperand &rhs) const
-{
+{ 
   eOperandType				t;
   std::string				resString;
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
@@ -100,6 +100,7 @@ IOperand				*Operand<T>::operator+(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 + val2;
+  
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())

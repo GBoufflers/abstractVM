@@ -18,6 +18,11 @@ Chipset::~Chipset()
 
 }
 
+std::list<std::string> &	Chipset::getInstruct()
+{
+  return (this->final);
+}
+
 void	Chipset::initMap()
 {
   this->verif["push"] = 1;

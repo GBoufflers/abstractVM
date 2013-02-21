@@ -2,15 +2,16 @@
 ; sample.avm -
 ; -------------
 ;push int32(-42) ;;
-push int32(78945)   
-add;
-push float(-44.55)
-lol
-mul
-push double(-42.42)
-push int32(-42)
-dump
-pop
-push int32(-94)
-assert double(-42.42)
-exit
+push int32(1)   
+push int16(2)
+push int8(3)
+;add
+;push float(-4.0)
+;mul
+;push double(-5.0)
+;push int32(-42)
+;dump
+;pop
+;push int32(-94)
+;assert double(-42.42)
+;exit

@@ -11,7 +11,7 @@
 Bios::Bios()
 {
   initTab();
-  std::cout << "on est dans le bios" << std::endl;
+
 }
 
 Bios::~Bios()
