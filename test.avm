@@ -3,7 +3,7 @@
 ; -------------
 ;push int32(-42) ;;
 push int32(1)   
-push int16(2)
+push int16(3)
 push int8(3)
 add
 ;push float(-4.0)

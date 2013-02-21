@@ -96,7 +96,7 @@ void	Cpu::push(std::vector<std::string> fields)
   if (fields[1] == "int8")
     type = Int8;
   else if (fields[1] == "int16")
-      type = Int16;
+    type = Int16;
   else if (fields[1] == "int32")
     type = Int32;
   else if (fields[1] == "float")
@@ -132,7 +132,6 @@ std::vector<std::string> Cpu::split(char delim, std::string work)
 
 void	Cpu::add()
 {
-  //IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
@@ -140,7 +139,6 @@ void	Cpu::add()
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
-  //*n1 + *n2;
   this->_mem->mFrontPush(*n1 + *n2);
   std::cout << "miracle" << std::endl;
 }
@@ -233,15 +231,11 @@ int	Cpu::exec(std::string func)
 
   for (std::map<std::string,int>::const_iterator it = this->mmap.begin(); it != this->mmap.end(); ++it)
     {
-      //  std::cout << "on recherche activement ce batard : " << func << std::endl;
       std::string tmp = it->first;
-      //      std::cout << tmp << std::endl;
       if (tmp == func)
 	{
 	  ret = it->second;
-	  //  std::cout << "ass licking" << std::endl;
 	  (this->*creation[ret])();
-	  // std::cout << "cock sucker" << std::endl;
 	  return (ret);
 	}
     }

@@ -42,7 +42,6 @@ public:
   IOperand				*operator*(const IOperand &rhs) const;
   IOperand				*operator/(const IOperand &rhs) const;
   IOperand				*operator%(const IOperand &rhs) const;
-  IOperand				*operator=(const IOperand &rhs);
   bool					operator==(const IOperand &rhs) const;
 };
 
@@ -95,18 +94,18 @@ IOperand				*Operand<T>::operator+(const IOperand &rhs) const
   eOperandType				t;
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
-  T					res, val1, val2;
+  long double				res, val1, val2;
 
   ss1 >> val1;
   ss2 >> val2;
-
   res = val1 + val2;
+  std::cout << "val1 = " << val1 << std::endl;
+  std::cout << "val2 = " << val2 << std::endl;
+  std::cout << "res = " << res << std::endl;
   ss << res;
-
   t = this->getType();
   if (this->getType() < rhs.getType())
-  t = rhs.getType();
-
+    t = rhs.getType();
   return (this->_bios->createOperand(t, ss.str()));
 }
 
@@ -118,39 +117,39 @@ IOperand				*Operand<T>::operator-(const IOperand &rhs) const
   eOperandType				t;
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
-  T					res, val1, val2;
+  long double				res, val1, val2;
 
   ss1 >> val1;
   ss2 >> val2;
-
   res = val1 - val2;
+  std::cout << "val1 = " << val1 << std::endl;
+  std::cout << "val2 = " << val2 << std::endl;
+  std::cout << "res = " << res << std::endl;
   ss << res;
-
   t = this->getType();
   if (this->getType() < rhs.getType())
-  t = rhs.getType();
-
+    t = rhs.getType();
   return (this->_bios->createOperand(t, ss.str()));
 }
 
 template <typename T>
 IOperand				*Operand<T>::operator*(const IOperand &rhs) const
 {
-    eOperandType				t;
+  eOperandType				t;
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
-  T					res, val1, val2;
+  long double				res, val1, val2;
 
   ss1 >> val1;
   ss2 >> val2;
-
   res = val1 * val2;
+  std::cout << "val1 = " << val1 << std::endl;
+  std::cout << "val2 = " << val2 << std::endl;
+  std::cout << "res = " << res << std::endl;
   ss << res;
-
   t = this->getType();
   if (this->getType() < rhs.getType())
-  t = rhs.getType();
-
+    t = rhs.getType();
   return (this->_bios->createOperand(t, ss.str()));
 }
 
@@ -158,18 +157,43 @@ template <typename T>
 IOperand				*Operand<T>::operator/(const IOperand &rhs) const
 {
   eOperandType				t;
-  std::string				resString;
+  std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
-  T					res, val1, val2;
+  long double				res, val1, val2;
 
   ss1 >> val1;
   ss2 >> val2;
   res = val1 / val2;
+  std::cout << "val1 = " << val1 << std::endl;
+  std::cout << "val2 = " << val2 << std::endl;
+  std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
     t = rhs.getType();
-  return(this->_bios->createOperand(t, ss.str()));
+  return (this->_bios->createOperand(t, ss.str()));
+}
+
+
+template <typename T>
+IOperand				*Operand<T>::operator%(const IOperand &rhs) const
+{
+  eOperandType				t;
+  std::string				resString;  
+  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
+  long int				res, val1, val2;
+
+  ss1 >> val1;
+  ss2 >> val2;
+  res = val1 % val2;
+  std::cout << "val1 = " << val1 << std::endl;
+  std::cout << "val2 = " << val2 << std::endl;
+  std::cout << "res = " << res << std::endl;
+  ss << res;
+  t = this->getType();
+  if (this->getType() < rhs.getType())
+    t = rhs.getType();
+  return (this->_bios->createOperand(t, ss.str()));
 }
 
 template <>
@@ -184,30 +208,6 @@ inline IOperand				*Operand<double>::operator%(const IOperand &rhs) const
 {
   std::string tmp = rhs.toString();
   return NULL;
-}
-
-template <typename T>
-IOperand				*Operand<T>::operator%(const IOperand &rhs) const
-{
-  eOperandType				t;
-  std::string				resString;
-  std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
-  T					res, val1, val2;
-
-  ss1 >> val1;
-  ss2 >> val2;
-  res = val1 % val2;
-  ss << res;
-  t = this->getType();
-  if (this->getType() < rhs.getType())
-    t = rhs.getType();
-  return(this->_bios->createOperand(t, ss.str()));
-}
-
-template <typename T>
-IOperand				*Operand<T>::operator=(const IOperand &rhs)
-{
-  return (this->_bios->createOperand(rhs.getType(), rhs.toString()));
 }
 
 template <typename T>
