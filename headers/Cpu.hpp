@@ -116,7 +116,7 @@ void	Cpu::assert(std::vector<std::string> fields)
   op = bios->createOperand(type, fields[2]);
   ret = (op == this->_mem->mFrontGet());
   if (ret == false)
-    ;
+    return;
 }
 
 void	Cpu::print()
