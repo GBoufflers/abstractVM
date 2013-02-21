@@ -1,17 +1,18 @@
 ; -------------
 ; sample.avm -
 ; -------------
-;push int32(-42) ;;
 push int32(1)   
 push int16(3)
-push int8(3)
+push int8(600)
 add
-;push float(-4.0)
-;mul
-;push double(-5.0)
-;push int32(-42)
-;dump
-;pop
-;push int32(-94)
-;assert double(-42.42)
-;exit
+push float(5.63)
+push int8(2)
+mul
+push int16(3)
+push int8(3)
+div
+push int32(500)
+push int8(2)
+mod
+dump
+exit

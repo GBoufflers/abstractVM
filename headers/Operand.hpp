@@ -99,9 +99,9 @@ IOperand				*Operand<T>::operator+(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 + val2;
-  std::cout << "val1 = " << val1 << std::endl;
-  std::cout << "val2 = " << val2 << std::endl;
-  std::cout << "res = " << res << std::endl;
+  // std::cout << "val1 = " << val1 << std::endl;
+  // std::cout << "val2 = " << val2 << std::endl;
+  // std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
@@ -122,9 +122,9 @@ IOperand				*Operand<T>::operator-(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 - val2;
-  std::cout << "val1 = " << val1 << std::endl;
-  std::cout << "val2 = " << val2 << std::endl;
-  std::cout << "res = " << res << std::endl;
+  // std::cout << "val1 = " << val1 << std::endl;
+  // std::cout << "val2 = " << val2 << std::endl;
+  // std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
@@ -143,9 +143,9 @@ IOperand				*Operand<T>::operator*(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 * val2;
-  std::cout << "val1 = " << val1 << std::endl;
-  std::cout << "val2 = " << val2 << std::endl;
-  std::cout << "res = " << res << std::endl;
+  // std::cout << "val1 = " << val1 << std::endl;
+  // std::cout << "val2 = " << val2 << std::endl;
+  // std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
@@ -164,9 +164,9 @@ IOperand				*Operand<T>::operator/(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 / val2;
-  std::cout << "val1 = " << val1 << std::endl;
-  std::cout << "val2 = " << val2 << std::endl;
-  std::cout << "res = " << res << std::endl;
+  // std::cout << "val1 = " << val1 << std::endl;
+  // std::cout << "val2 = " << val2 << std::endl;
+  // std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
@@ -186,9 +186,9 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 % val2;
-  std::cout << "val1 = " << val1 << std::endl;
-  std::cout << "val2 = " << val2 << std::endl;
-  std::cout << "res = " << res << std::endl;
+  // std::cout << "val1 = " << val1 << std::endl;
+  // std::cout << "val2 = " << val2 << std::endl;
+  // std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())

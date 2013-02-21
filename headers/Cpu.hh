@@ -26,7 +26,6 @@ public:
   void	mul();
   void	div();
   void	mod();
-  void	exit();
   void	pop();
   void	dump();
   void	print();
@@ -43,7 +42,7 @@ public:
   void	execInstruct();
   void	pushInList(std::string &str);
   std::vector<std::string> split(char delim, std::string work);
-  int	exec(std::string func);
+  int	exec(std::string func, int *isDumpToDo);
   void	initPtrFunc();
   void	initMap();
 };
