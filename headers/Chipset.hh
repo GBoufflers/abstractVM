@@ -21,6 +21,7 @@ public:
   virtual void checkSimple(std::string &instr, std::string &line);
   virtual void checkComplex(std::string &instr, std::string &line);
   virtual std::string &checkParam(std::string &param, int pos);
+  virtual void	putComplexInList(std::string &a, std::string &b, std::string &c);
 };
 
 #endif

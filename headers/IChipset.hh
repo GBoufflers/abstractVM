@@ -9,6 +9,7 @@
 class	IChipset
 {
 public:
+  virtual void	putComplexInList(std::string &a, std::string &b, std::string &c) = 0;
   virtual	std::string &checkParam(std::string &param, int size) = 0;
   virtual	void checkSimple(std::string &instr, std::string &line) = 0;
   virtual	void checkComplex(std::string &instr, std::string &line) = 0;
