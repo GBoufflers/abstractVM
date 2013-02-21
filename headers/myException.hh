@@ -8,10 +8,13 @@ class myException : public std::exception
 {
   std::string msg;
 public:
-  myException( const char * Msg)
+  myException( const char * Msg, int line)
   {
     std::ostringstream oss;
-    oss <<  Msg << std::endl;
+    if (line != 0)
+      oss <<  Msg << " à la ligne " << line << std::endl;
+    else
+      oss << Msg << std::endl;
     this->msg = oss.str();
   }
   
