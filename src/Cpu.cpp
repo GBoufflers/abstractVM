@@ -260,11 +260,13 @@ void	Cpu::execInstruct()
 {
   int				next;
   int				isDumpToDo;
+  int				isAnExit;
   std::string			str;
   std::vector<std::string>	fields;
 
   next = 0;
   isDumpToDo = 0;
+  isAnExit = 0;
   while (!(this->_instruction.empty()) && next == 0)
     {
       fields.clear();
@@ -272,7 +274,10 @@ void	Cpu::execInstruct()
       str = this->_instruction.front();
       fields = split(' ', str);
       if (fields.front() == "exit")
-	next = 1;
+	{
+	  next = 1;
+	  isAnExit = 1;
+	}
       else
 	{
 	  if (exec(fields.front(), &isDumpToDo) == -1)
@@ -287,4 +292,6 @@ void	Cpu::execInstruct()
     }
   if (isDumpToDo == 1)
     this->doDump();
+  if (isAnExit == 0)
+    throw myException("Exit ain't present in the file", 0);
 }

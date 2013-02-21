@@ -2,8 +2,7 @@
 ; sample.avm -
 ; -------------
 push int32(1)   
-pop
-pop
+sub
 push int16(3)
 push int8(600)
 sub
@@ -17,4 +16,3 @@ push int32(500)
 push int8(2)
 mod
 dump
-exit
