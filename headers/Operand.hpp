@@ -1,7 +1,9 @@
 #ifndef			__OPERAND_HPP__
 #define			__OPERAND_HPP__
 
+#include		<cmath>
 #include		<iostream>
+#include		<iomanip>
 #include		<sstream>
 #include		<string>
 #include		"enum.hh"
@@ -13,8 +15,7 @@ class	Operand : public IOperand
 {
 private:
   T	  				_value;
-  std::string				  _svalue;
-  int					_prec;
+  std::string				_svalue;
   eOperandType				_type;
   Bios					*_bios;
 
@@ -70,7 +71,12 @@ std::string const			&Operand<T>::toString() const
 template <typename T>
 int					Operand<T>::getPrecision() const
 {
-  return (_prec);
+  std::string str2;
+  int	pos;
+
+  pos = _svalue.find('.');
+  str2 = this->_svalue.substr(pos, _svalue.size() - 1);
+  return (str2.size());
 }
 
 template <typename T>
@@ -95,14 +101,20 @@ IOperand				*Operand<T>::operator+(const IOperand &rhs) const
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
   long double				res, val1, val2;
+  int					prec;
 
   ss1 >> val1;
   ss2 >> val2;
   res = val1 + val2;
-  // std::cout << "val1 = " << val1 << std::endl;
-  // std::cout << "val2 = " << val2 << std::endl;
-  // std::cout << "res = " << res << std::endl;
-  ss << res;
+  if (this->getType() == Float || rhs.getType() == Double)
+    {
+      prec = this->getPrecision();
+      if (rhs.getPrecision() > prec)
+	prec = rhs.getPrecision();
+      ss << std::fixed << std::setprecision(prec) <<  res;
+    }
+  else
+    ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
     t = rhs.getType();
@@ -118,18 +130,25 @@ IOperand				*Operand<T>::operator-(const IOperand &rhs) const
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
   long double				res, val1, val2;
+  int					prec;
 
   ss1 >> val1;
   ss2 >> val2;
   res = val1 - val2;
-  // std::cout << "val1 = " << val1 << std::endl;
-  // std::cout << "val2 = " << val2 << std::endl;
-  // std::cout << "res = " << res << std::endl;
-  ss << res;
+  if (this->getType() == Float || rhs.getType() == Double)
+    {
+      prec = this->getPrecision();
+      if (rhs.getPrecision() > prec)
+	prec = rhs.getPrecision();
+      ss << std::fixed << std::setprecision(prec) <<  res;
+    }
+  else
+    ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
     t = rhs.getType();
   return (this->_bios->createOperand(t, ss.str()));
+
 }
 
 template <typename T>
@@ -139,14 +158,20 @@ IOperand				*Operand<T>::operator*(const IOperand &rhs) const
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
   long double				res, val1, val2;
+  int					prec;
 
   ss1 >> val1;
   ss2 >> val2;
   res = val1 * val2;
-  // std::cout << "val1 = " << val1 << std::endl;
-  // std::cout << "val2 = " << val2 << std::endl;
-  // std::cout << "res = " << res << std::endl;
-  ss << res;
+  if (this->getType() == Float || rhs.getType() == Double)
+    {
+      prec = this->getPrecision();
+      if (rhs.getPrecision() > prec)
+	prec = rhs.getPrecision();
+      ss << std::fixed << std::setprecision(prec) <<  res;
+    }
+  else
+    ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
     t = rhs.getType();
@@ -160,14 +185,20 @@ IOperand				*Operand<T>::operator/(const IOperand &rhs) const
   std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
   long double				res, val1, val2;
+  int					prec;
 
   ss1 >> val1;
   ss2 >> val2;
   res = val1 / val2;
-  // std::cout << "val1 = " << val1 << std::endl;
-  // std::cout << "val2 = " << val2 << std::endl;
-  // std::cout << "res = " << res << std::endl;
-  ss << res;
+  if (this->getType() == Float || rhs.getType() == Double)
+    {
+      prec = this->getPrecision();
+      if (rhs.getPrecision() > prec)
+	prec = rhs.getPrecision();
+      ss << std::fixed << std::setprecision(prec) <<  res;
+    }
+  else
+    ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
     t = rhs.getType();
@@ -186,9 +217,6 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   res = val1 % val2;
-  // std::cout << "val1 = " << val1 << std::endl;
-  // std::cout << "val2 = " << val2 << std::endl;
-  // std::cout << "res = " << res << std::endl;
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
