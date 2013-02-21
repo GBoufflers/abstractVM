@@ -34,7 +34,7 @@ int			Memory::myStackSize() const
 
 IOperand		*Memory::mFrontGet()
 {
-  if (this->myStackEmpty() == false)
+  if (this->myStackEmpty())
     {
       std::cout << "empty stack "<< std::endl;
       return NULL;
@@ -45,7 +45,7 @@ IOperand		*Memory::mFrontGet()
 
 void			Memory::mFrontPop()
 {
-  if (this->myStackEmpty() == false)
+  if (this->myStackEmpty())
     std::cout << "empty stack "<< std::endl;
   else
     this->mem.pop_front();

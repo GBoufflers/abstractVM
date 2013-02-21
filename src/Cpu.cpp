@@ -132,25 +132,17 @@ std::vector<std::string> Cpu::split(char delim, std::string work)
 
 void	Cpu::add()
 {
-  //  IOperand *n;
+  //IOperand *n;
   IOperand *n1;
   IOperand *n2;
 
-  std::cout << "1" << std::endl;
   n1 = this->_mem->mFrontGet();
-  //std::cout << n1->toString() << std::endl;
-  std::cout << "2" << std::endl;
   this->_mem->mFrontPop();
-  std::cout << "3" << std::endl;
   n2 = this->_mem->mFrontGet();
-  //  std::cout << n2->toString() << std::endl;
-  std::cout << "4" << std::endl;
-  //  n = *n1 + *n2;
-  std::cout << "pute" << std::endl;
   this->_mem->mFrontPop();
-  std::cout << "5" << std::endl;
-  //  this->_mem->mFrontPush(n);
-  std::cout << "6" << std::endl;
+  //*n1 + *n2;
+  this->_mem->mFrontPush(*n1 + *n2);
+  std::cout << "miracle" << std::endl;
 }
 
 void	Cpu::sub()

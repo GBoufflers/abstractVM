@@ -94,18 +94,21 @@ IOperand				*Operand<T>::operator+(const IOperand &rhs) const
 { 
   eOperandType				t;
   std::string				resString;
+  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
   T					res, val1, val2;
 
   ss1 >> val1;
   ss2 >> val2;
   res = val1 + val2;
-  
   ss << res;
   t = this->getType();
   if (this->getType() < rhs.getType())
     t = rhs.getType();
-  return(this->_bios->createOperand(t, ss.str()));
+  std::cout << "hahaha" << std::endl;
+  IOperand *n = this->_bios->createOperand(t, ss.str());
+  std::cout << "xdaiptdr" << std::endl;
+  return(n);
 }
 
   /***************/

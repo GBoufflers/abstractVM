@@ -5,7 +5,7 @@
 push int32(1)   
 push int16(2)
 push int8(3)
-;add
+add
 ;push float(-4.0)
 ;mul
 ;push double(-5.0)
