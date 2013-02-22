@@ -76,7 +76,7 @@ int					Operand<T>::getPrecision() const
 
   pos = _svalue.find('.');
   str2 = this->_svalue.substr(pos, _svalue.size() - 1);
-  return (str2.size());
+  return (str2.size() - 1);
 }
 
 template <typename T>
