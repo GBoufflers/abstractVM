@@ -12,7 +12,8 @@ class	Cpu
 {
   void					(Cpu::*creation[9])();
   Memory				*_mem;
-  std::map<std::string, int>	mmap;
+  std::map<std::string, int>		_mmap;
+  std::map<std::string, eOperandType>	_checkType;
   std::list<std::string>		_res;
   std::list<std::string>		&_instruction;
 
@@ -44,7 +45,8 @@ public:
   std::vector<std::string> split(char delim, std::string work);
   int	exec(std::string func, int *isDumpToDo);
   void	initPtrFunc();
-  void	initMap();
+  void	initMaps();
+  eOperandType	whatIsTheType(std::string func);
 };
 
 #endif

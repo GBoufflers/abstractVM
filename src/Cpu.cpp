@@ -4,7 +4,7 @@
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
 {
   this->_mem = new Memory();
-  initMap();
+  initMaps();
   initPtrFunc();
   try
     {
@@ -46,51 +46,64 @@ void	Cpu::dump()
     }
 }
 
+eOperandType	Cpu::whatIsTheType(std::string func)
+{
+  eOperandType		ret;
+
+  for (std::map<std::string, eOperandType>::const_iterator it = this->_checkType.begin(); it != this->_checkType.end(); ++it)
+    {
+      std::string tmp = it->first;
+      if (tmp == func)
+	{
+	  ret = it->second;
+     	  break;
+	}
+    }
+  return (ret);
+}
+
 void	Cpu::doDump()
 {
   for (std::list<std::string>::const_iterator it = this->_res.begin(); it != this->_res.end(); ++it)
-    {
-      std::string tmp = *it;
-      std::cout << tmp << std::endl;
-    }
+    std::cout << *it << std::endl;
 }
 
 void	Cpu::assert(std::vector<std::string> fields)
 { 
   IOperand	*op;
+  IOperand	*op2;
   Bios		*bios;
   eOperandType	type;
-  bool		ret;
   
   bios = new Bios;
-  if (fields[1] == "Int8")
-    type = Int8;
-  else if (fields[1] == "Int16")
-    type = Int16;
-  else if (fields[1] == "Int32")
-    type = Int32;
-  else if (fields[1] == "Float")
-    type = Float;
-  else
-    type = Double;
+  type = whatIsTheType(fields[1]);
   op = bios->createOperand(type, fields[2]);
-  ret = (op == this->_mem->mFrontGet());
-  if (ret == false)
-    return;
+  op2 = this->_mem->mFrontGet();
+  if ((op->getType() != op2->getType()) || (op->toString() != op2->toString()))
+    throw myException("the value checked by assert doesnt match with the first value of the stack", 0);
 }
 
 void	Cpu::print()
 {
-  std::string		str;
   IOperand		*n;
-  std::stringstream	ss;
+  std::string		msend;
+  char			bitch[2];
+  int			v;
+  char			c;
 
   n = this->_mem->mFrontGet();
   if (n->getType() == Int8)
     {
-      str = n->toString();
-      this->pushInList(str);
+      std::stringstream	ss(n->toString());;
+      ss >> v;
+      c = v;
+      bitch[0] = c;
+      bitch[1] = '\0';
+      msend = bitch;
+      this->pushInList(msend);
     }
+  else
+    throw myException("Error : the value checked by print doesn't match with an int8", 0);
 }
 
 void	Cpu::push(std::vector<std::string> fields)
@@ -98,16 +111,7 @@ void	Cpu::push(std::vector<std::string> fields)
   Bios		bios;
   eOperandType	type;
 
-  if (fields[1] == "int8")
-    type = Int8;
-  else if (fields[1] == "int16")
-    type = Int16;
-  else if (fields[1] == "int32")
-    type = Int32;
-  else if (fields[1] == "float")
-    type = Float;
-  else
-    type = Double;
+  type = whatIsTheType(fields[1]);
   this->_mem->mFrontPush(bios.createOperand(type, fields[2]));
 }
 
@@ -225,23 +229,28 @@ void	Cpu::initPtrFunc()
   this->creation[7] = &Cpu::print;
 }
 
-void	Cpu::initMap()
+void	Cpu::initMaps()
 {
-  this->mmap["add"] = 0;
-  this->mmap["sub"] = 1;
-  this->mmap["mul"] = 2;
-  this->mmap["div"] = 3;
-  this->mmap["mod"] = 4;
-  this->mmap["pop"] = 5;
-  this->mmap["dump"] = 6;
-  this->mmap["print"] = 7;
+  this->_mmap["add"] = 0;
+  this->_mmap["sub"] = 1;
+  this->_mmap["mul"] = 2;
+  this->_mmap["div"] = 3;
+  this->_mmap["mod"] = 4;
+  this->_mmap["pop"] = 5;
+  this->_mmap["dump"] = 6;
+  this->_mmap["print"] = 7;
+  this->_checkType["int8"] = Int8;
+  this->_checkType["int16"] = Int16;
+  this->_checkType["int32"] = Int32;
+  this->_checkType["float"] = Float;
+  this->_checkType["double"] = Double;
 }
 
 int	Cpu::exec(std::string func, int *isDumpToDo)
 {
   int		ret = -1;
 
-  for (std::map<std::string,int>::const_iterator it = this->mmap.begin(); it != this->mmap.end(); ++it)
+  for (std::map<std::string,int>::const_iterator it = this->_mmap.begin(); it != this->_mmap.end(); ++it)
     {
       std::string tmp = it->first;
       if (tmp == func)
