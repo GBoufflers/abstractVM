@@ -1,5 +1,53 @@
-push float(5.3658965)
-push float(4.125552122)
+push float(5.00000000000);
+push float(4.123456789);
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+dump
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+push float(0.0)
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
+pop
 add
 dump
-exit
+;exit

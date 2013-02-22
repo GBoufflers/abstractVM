@@ -6,11 +6,7 @@
 Chipset::Chipset(std::list<std::string> &list) : file(list), num(1)
 {
   initMap();
-  try
-    {
-      traverseList();
-    }
-  catch (const std::exception & e ) { std::cerr << e.what();}
+  traverseList();
 }
 
 Chipset::~Chipset()

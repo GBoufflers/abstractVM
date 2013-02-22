@@ -6,11 +6,7 @@ Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
   this->_mem = new Memory();
   initMap();
   initPtrFunc();
-  try
-    {
-      execInstruct();
-    }
-  catch (const std::exception & e ) { std::cerr << e.what();}
+  execInstruct();
 }
 
  Cpu::~Cpu()
