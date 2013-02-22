@@ -1,5 +1,3 @@
-push float(5.00000000000);
-push float(4.123456789);
 push float(0.0)
 push float(0.0)
 push float(0.0)
@@ -8,46 +6,12 @@ push float(0.0)
 push float(0.0)
 push float(0.0)
 dump
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-push float(0.0)
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-pop
-add
+push int32(1)
+push int32(1)
+push int32(1)
+push int32(1)
+push int32(1)
+push int32(1)
+push int32(1)
 dump
-;exit
+exit
