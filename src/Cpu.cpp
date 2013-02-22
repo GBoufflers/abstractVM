@@ -6,11 +6,7 @@ Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
   this->_mem = new Memory();
   initMaps();
   initPtrFunc();
-  try
-    {
-      execInstruct();
-    }
-  catch (const std::exception & e ) { std::cerr << e.what();}
+  execInstruct();
 }
 
  Cpu::~Cpu()
@@ -38,7 +34,7 @@ void	Cpu::dump()
   while (!nnew.empty())
     {
       if (nnew.empty() == true)
-	throw myException("emtpy stack !", 0);
+	throw myException("emtpy stack !");
       n = nnew.back();
       nnew.pop_back();
       str = n->toString();
@@ -145,7 +141,7 @@ void	Cpu::add()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to add!", 0);
+    throw myException("stack is not big enough to add!");
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -160,7 +156,7 @@ void	Cpu::sub()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to sub!", 0);
+    throw myException("stack is not big enough to sub!");
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -176,7 +172,7 @@ void	Cpu::mul()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to mul!", 0);
+    throw myException("stack is not big enough to mul!");
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -192,7 +188,7 @@ void	Cpu::div()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to div!", 0);
+    throw myException("stack is not big enough to div!");
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -208,7 +204,7 @@ void	Cpu::mod()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to mod!", 0);
+    throw myException("stack is not big enough to mod!");
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -302,5 +298,5 @@ void	Cpu::execInstruct()
   if (isDumpToDo == 1)
     this->doDump();
   if (isAnExit == 0)
-    throw myException("Exit ain't present in the file", 0);
+    throw myException("Exit ain't present in the file");
 }

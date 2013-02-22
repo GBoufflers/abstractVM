@@ -1,6 +1,4 @@
 #include		<sstream>
-
-
 #include		"../headers/IOperand.hh"
 #include		"../headers/Io.hh"
 #include		"../headers/Chipset.hh"
@@ -11,12 +9,16 @@
 
 void	avm(char *file)
 {
-  Io	a(file);
-
-  std::list<std::string> lol = a.getList();
-  Chipset	b(lol);
-  std::list<std::string> p = b.getInstruct();
-  Cpu		c(p);
+  try
+    {
+      Io	a(file);
+  
+      std::list<std::string> lol = a.getList();
+      Chipset	b(lol);
+      std::list<std::string> p = b.getInstruct();
+      Cpu		c(p);
+    }
+  catch (const std::exception & e ) { std::cerr << e.what();}
 }
 
 int	main(int ac, char **av)

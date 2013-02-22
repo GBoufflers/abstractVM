@@ -3,13 +3,21 @@
 
 #include	<stdexcept>
 #include	<sstream>
+#include	<iostream>
+#include	<list>
+#include	<string>
 
 class myException : public std::exception
 {
   std::string msg;
 public:
-  myException( const char * Msg, int line)
+  myException(const char * Msg, int line = 0, std::list<std::string> *instr = NULL)
   {
+    if (instr)
+      {
+	for (std::list<std::string>::const_iterator it = instr->begin(); it != instr->end(); ++it)
+	    std::cout << *it << std::endl;
+      }
     std::ostringstream oss;
     if (line != 0)
       oss <<  Msg << " à la ligne " << line << std::endl;

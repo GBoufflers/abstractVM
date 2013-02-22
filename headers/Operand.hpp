@@ -231,7 +231,7 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
 template <>
 inline IOperand				*Operand<float>::operator%(const IOperand &rhs) const
 {
-  throw myException("Error : modulo with a dloat which is not a valid operation", 0);
+  throw myException("Error : modulo with a foat which is not a valid operation", 0);
   std::string tmp = rhs.toString();
   return NULL;
 }
