@@ -76,7 +76,7 @@ void	Cpu::assert(std::vector<std::string> fields)
   op = bios->createOperand(type, fields[2]);
   op2 = this->_mem->mFrontGet();
   if ((op->getType() != op2->getType()) || (op->toString() != op2->toString()))
-    throw myException::executionException("the value checked by assert doesnt match with the first value of the stack");
+    throw myException::executionException("the value checked by assert doesnt match with the first value of the stack", &this->_res);
 }
 
 void	Cpu::print()
@@ -99,7 +99,7 @@ void	Cpu::print()
       this->pushInList(msend);
     }
   else
-    throw myException::executionException("Error : the value checked by print doesn't match with an int8");
+    throw myException::executionException("Error : the value checked by print doesn't match with an int8", &this->_res);
 }
 
 void	Cpu::push(std::vector<std::string> fields)
@@ -141,7 +141,7 @@ void	Cpu::add()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException::executionException("stack is not big enough to add!");
+    throw myException::executionException("stack is not big enough to add!", &this->_res);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -156,7 +156,7 @@ void	Cpu::sub()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException::executionException("stack is not big enough to sub!");
+    throw myException::executionException("stack is not big enough to sub!", &this->_res);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -172,7 +172,7 @@ void	Cpu::mul()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException::executionException("stack is not big enough to mul!");
+    throw myException::executionException("stack is not big enough to mul!", &this->_res);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -188,7 +188,7 @@ void	Cpu::div()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException::executionException("stack is not big enough to div!");
+    throw myException::executionException("stack is not big enough to div!", &this->_res);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -204,7 +204,7 @@ void	Cpu::mod()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException::executionException("stack is not big enough to mod!");
+    throw myException::executionException("stack is not big enough to mod!", &this->_res);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
