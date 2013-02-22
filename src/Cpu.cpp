@@ -1,27 +1,32 @@
 #include	"../headers/Cpu.hh"
+#include	"../headers/myException.hh"
 
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
 {
-   this->_mem = new Memory();
-   initMap();
-   initPtrFunc();
-   execInstruct();
- }
+  this->_mem = new Memory();
+  initMap();
+  initPtrFunc();
+  try
+    {
+      execInstruct();
+    }
+  catch (const std::exception & e ) { std::cerr << e.what();}
+}
 
  Cpu::~Cpu()
  {
 
  }
 
- void	Cpu::pop()
- {
-   this->_mem->mFrontPop();
- }
+void	Cpu::pop()
+{
+  this->_mem->mFrontPop();
+}
 
- void	Cpu::pushInList(std::string &str)
- {
-   this->_res.push_front(str);
- }
+void	Cpu::pushInList(std::string &str)
+{
+  this->_res.push_front(str);
+}
 
 void	Cpu::dump()
 {
@@ -32,6 +37,8 @@ void	Cpu::dump()
   nnew = this->_mem->getPile();
   while (!nnew.empty())
     {
+      if (nnew.empty() == true)
+	throw myException("emtpy stack !", 0);
       n = nnew.back();
       nnew.pop_back();
       str = n->toString();
@@ -133,6 +140,8 @@ void	Cpu::add()
   IOperand *n1;
   IOperand *n2;
 
+  if (this->_mem->myStackSize() < 2)
+    throw myException("stack is not big enough to add!", 0);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -146,6 +155,8 @@ void	Cpu::sub()
   IOperand *n1;
   IOperand *n2;
 
+  if (this->_mem->myStackSize() < 2)
+    throw myException("stack is not big enough to sub!", 0);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -160,6 +171,8 @@ void	Cpu::mul()
   IOperand *n1;
   IOperand *n2;
 
+  if (this->_mem->myStackSize() < 2)
+    throw myException("stack is not big enough to mul!", 0);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -174,6 +187,8 @@ void	Cpu::div()
   IOperand *n1;
   IOperand *n2;
 
+  if (this->_mem->myStackSize() < 2)
+    throw myException("stack is not big enough to div!", 0);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
@@ -188,6 +203,8 @@ void	Cpu::mod()
   IOperand *n1;
   IOperand *n2;
 
+  if (this->_mem->myStackSize() < 2)
+    throw myException("stack is not big enough to mod!", 0);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
