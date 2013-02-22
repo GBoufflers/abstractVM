@@ -16,7 +16,7 @@ protected:
   std::list<std::string> *_instr;
 
 public:
-  genException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL) :_Msg(Msg), _line(line), _instr(instr)
+  genException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL) : _Msg(Msg), _line(line), _instr(instr)
   {
     aff();
   }
