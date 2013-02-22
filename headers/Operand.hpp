@@ -35,10 +35,6 @@ public:
 
   /*************/
 
-  void					setType(eOperandType type);
-
-  /*************/
-
   IOperand				*operator+(const IOperand &rhs) const;
   IOperand				*operator-(const IOperand &rhs) const;
   IOperand				*operator*(const IOperand &rhs) const;
@@ -86,14 +82,26 @@ eOperandType				Operand<T>::getType() const
 }
 
   /*************/
-
-template <typename T>
-void					Operand<T>::setType(eOperandType type)
+/*
+void					Operand<T>::checkFlowiiiiiiianPasInteger(long double value, eOperandType t)
 {
-  this->_type = type;
+  if (t == Float)
+    this->_bios->checkFlowian(value, 3.4e+38, -3.4e-38);
+  else if (t == Double)
+    this->_bios->checkFlowian(value, 1.7*10308, -1.7e-308);
 }
-  /*************/
 
+void					Operand<T>::checkFlowiiiiiiianInteger(long double value, eOperandType t)
+{
+  if (t == Int8)
+    this->_bios->checkFlowian(value, 128, -127);
+  else if (t == Int16)
+    this->_bios->checkFlowian(value, 32767, -32768);
+  else if (t == Int32)
+    this->_bios->checkFlowian(value, 2147483647, -2147483648);
+  this->checkFlowiiiiiiianPasInteger(res, t);
+}
+*/
 template <typename T>
 IOperand				*Operand<T>::operator+(const IOperand &rhs) const
 { 
