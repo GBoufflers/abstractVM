@@ -13,13 +13,13 @@ class	Operand : public IOperand
 {
 private:
   T	  				_value;
-  std::string				const  _svalue;
+  std::string				  _svalue;
   int					_prec;
   eOperandType				_type;
   Bios					*_bios;
 
 public:
-  Operand(const std::string &value);
+  Operand(const std::string &value, eOperandType t);
   virtual ~Operand();
 
   /*************/
@@ -47,9 +47,9 @@ public:
 };
 
 template <typename T>
-Operand<T>::Operand(const std::string &value) : _svalue(value)
+Operand<T>::Operand(const std::string &value, eOperandType t) : _svalue(value), _type(t)
 {
-  std::cout << "creation doperand " << _svalue << std::endl;
+  _bios = new Bios();
 }
 
 template <typename T>
@@ -93,22 +93,26 @@ template <typename T>
 IOperand				*Operand<T>::operator+(const IOperand &rhs) const
 { 
   eOperandType				t;
-  std::string				resString;
-  
+  std::string				resString;  
   std::stringstream			ss1(this->toString()), ss2(rhs.toString()), ss;
   T					res, val1, val2;
 
   ss1 >> val1;
   ss2 >> val2;
+  // std::cout << val2 << std::endl;
   res = val1 + val2;
   ss << res;
+  std::cout << ss.str() << std::endl;
   t = this->getType();
   if (this->getType() < rhs.getType())
-    t = rhs.getType();
-  std::cout << "hahaha" << std::endl;
-  IOperand *n = this->_bios->createOperand(t, ss.str());
-  std::cout << "xdaiptdr" << std::endl;
-  return(n);
+  t = rhs.getType();
+  std::cout << "le type : " << t <<  std::endl;
+  // std::string yop = ss.str();
+  //std::cout << "juste avant le segfault" << std::endl;
+  //IOperand *n = 
+  return (this->_bios->createOperand(Int8, ss.str()));
+  //std::cout << "xdaiptdr" << std::endl;
+  //return(n);
 }
 
   /***************/

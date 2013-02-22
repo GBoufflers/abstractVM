@@ -30,31 +30,32 @@ void		Bios::initTab()
 
 IOperand *	Bios::createInt8(const std::string & value)
 {
-  return (new Operand<Int8>(value));
+  return (new Operand<Int8>(value, Int8));
 }
 
 IOperand *	Bios::createInt16(const std::string & value)
 {
-  return (new Operand<Int16>(value));
+  return (new Operand<Int16>(value, Int16));
 }
 
 IOperand *	Bios::createInt32(const std::string & value)
 {
-  return (new Operand<Int32>(value));
+  return (new Operand<Int32>(value, Int32));
 }
 
 IOperand *	Bios::createFloat(const std::string & value)
 {
-  return (new Operand<Float>(value));
+  return (new Operand<Float>(value, Float));
 }
 
 IOperand *	Bios::createDouble(const std::string & value)
 {
-  return (new Operand<Double>(value));
+  return (new Operand<Double>(value, Double));
 }
 
 IOperand *	Bios::createOperand(eOperandType type, const std::string &value)
 {
+  //  std::cout << value << std::endl;
   if (type >= 0 && type <= 4)
     return ((this->*creation[type])(value));
   return NULL;

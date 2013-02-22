@@ -53,17 +53,12 @@ void			Memory::mFrontPop()
 
 void			Memory::mFrontPush(IOperand *n)
 {
-  for (std::list<IOperand *>::const_iterator it = mem.begin(); it != mem.end(); ++it)
-    {
-      IOperand *tmp = *it;    
-      std::cout << tmp->toString() << std::endl;
-    }
-  std::cout << "on push la mere a flo" << std::endl;
   this->mem.push_front(n);
-  std::cout << "c'était trpop bon" << std::endl;
+  std::cout << "contenu memoire après push" << std::endl;
   for (std::list<IOperand *>::const_iterator it = mem.begin(); it != mem.end(); ++it)
     {
       IOperand *tmp1 = *it;    
-      std::cout << tmp1->toString() << std::endl;
+      std::cout << tmp1->toString() << " ";
     }
+  std::cout << std::endl;
 }
