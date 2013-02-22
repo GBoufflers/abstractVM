@@ -9,8 +9,9 @@
 #include		"enum.hh"
 #include		"Bios.hh"
 #include		"IOperand.hh"
+#include		"myException.hh"
 
-template<class T> 
+template <class T> 
 class	Operand : public IOperand
 {
 private:
@@ -189,6 +190,8 @@ IOperand				*Operand<T>::operator/(const IOperand &rhs) const
 
   ss1 >> val1;
   ss2 >> val2;
+  if (val2 == 0)
+    throw myException("Error : division by division !", 0);
   res = val1 / val2;
   if (this->getType() == Float || rhs.getType() == Double)
     {
@@ -216,6 +219,8 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
 
   ss1 >> val1;
   ss2 >> val2;
+  if (val2 == 0)
+    throw myException("Error : modulo by division !", 0);
   res = val1 % val2;
   ss << res;
   t = this->getType();
@@ -227,6 +232,7 @@ IOperand				*Operand<T>::operator%(const IOperand &rhs) const
 template <>
 inline IOperand				*Operand<float>::operator%(const IOperand &rhs) const
 {
+  throw myException("Error : modulo with a dloat which is not a valid operation", 0);
   std::string tmp = rhs.toString();
   return NULL;
 }
@@ -234,6 +240,7 @@ inline IOperand				*Operand<float>::operator%(const IOperand &rhs) const
 template <>
 inline IOperand				*Operand<double>::operator%(const IOperand &rhs) const
 {
+  throw myException("Error : modulo with a double which is not a valid operation", 0);
   std::string tmp = rhs.toString();
   return NULL;
 }
