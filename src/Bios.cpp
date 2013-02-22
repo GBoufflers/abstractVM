@@ -2,11 +2,11 @@
 #include	"../headers/enum.hh"
 #include	"../headers/Operand.hpp"
 
-#define		Int8	char
-#define		Int16	signed short
-#define		Int32	signed int
-#define		Double	double
-#define		Float	float
+// #define		Int8	char
+// #define		Int16	signed short
+// #define		Int32	signed int
+// #define		Double	double
+// #define		Float	float
 
 Bios::Bios()
 {
@@ -30,27 +30,32 @@ void		Bios::initTab()
 
 IOperand *	Bios::createInt8(const std::string & value)
 {
-  return (new Operand<Int8>(value, Int8));
+  eOperandType	t = Int8;
+  return (new Operand<char>(value, t));
 }
 
 IOperand *	Bios::createInt16(const std::string & value)
 {
-  return (new Operand<Int16>(value, Int16));
+  eOperandType	t = Int16;
+  return (new Operand<signed short>(value, t));
 }
 
 IOperand *	Bios::createInt32(const std::string & value)
 {
-  return (new Operand<Int32>(value, Int32));
+  eOperandType	t = Int32;
+  return (new Operand<signed int>(value, t));
 }
 
 IOperand *	Bios::createFloat(const std::string & value)
 {
-  return (new Operand<Float>(value, Float));
+  eOperandType	t = Float;
+  return (new Operand<float>(value, t));
 }
 
 IOperand *	Bios::createDouble(const std::string & value)
 {
-  return (new Operand<Double>(value, Double));
+  eOperandType	t = Double;
+  return (new Operand<double>(value, t));
 }
 
 IOperand *	Bios::createOperand(eOperandType type, const std::string &value)
