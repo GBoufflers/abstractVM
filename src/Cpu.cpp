@@ -137,7 +137,7 @@ void	Cpu::add()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to add!");
+    throw myException("stack is not big enough to add!",  &_res);
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();

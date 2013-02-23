@@ -37,7 +37,7 @@ IOperand		*Memory::mFrontGet()
 {
   if (this->myStackEmpty())
     {
-      throw myException("emtpy stack !", 0);
+      throw myException("emtpy stack !");
     }
   else
     return(this->mem.front());
@@ -46,7 +46,7 @@ IOperand		*Memory::mFrontGet()
 void			Memory::mFrontPop()
 {
   if (this->myStackEmpty())
-    throw myException("emtpy stack !", 0);
+    throw myException("emtpy stack !");
   else
     this->mem.pop_front();
 }
