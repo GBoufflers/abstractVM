@@ -3,13 +3,13 @@
 #ifndef	        __MYEXCEPTION_HH__
 #define		__MYEXCEPTION_HH__
 
-class genException
+class myException
 {
 public:
-  class lexicalException : public myException
+  class lexicalException : public genException
   {
   public:
-    lexicalException(const char *msg, int line = 0) : myException(msg, line, NULL)
+    lexicalException(const char *msg, int line = 0) : genException(msg, line, NULL)
     {
       
     }
@@ -20,10 +20,10 @@ public:
     }
   };
   
-  class executionException : public myException
+  class executionException : public genException
   {
   public:
-    executionException( const char *msg, std::list<std::string> *list = NULL) : myException(msg, 0, list)
+    executionException( const char *msg, std::list<std::string> *list = NULL) : genException(msg, 0, list)
     {
       
     }

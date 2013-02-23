@@ -7,7 +7,7 @@
 #include	<list>
 #include	<string>
 
-class myException : public std::exception
+class genException : public std::exception
 {
 protected:
   std::string msg;
@@ -16,12 +16,12 @@ protected:
   std::list<std::string> *_instr;
 
 public:
-  myException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL) :_Msg(Msg), _line(line), _instr(instr)
+  genException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL) :_Msg(Msg), _line(line), _instr(instr)
   {
     aff();
   }
 
-  virtual ~myException() throw(){}
+  virtual ~genException() throw(){}
 
   virtual void aff()  throw()
   {

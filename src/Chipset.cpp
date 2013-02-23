@@ -8,7 +8,6 @@ Chipset::Chipset(std::list<std::string> &list) : file(list), num(1)
 {
   initMap();
   traverseList();
-  throw genException::lexicalException("test exception");
 }
 
 Chipset::~Chipset()
@@ -74,21 +73,21 @@ std::string	&Chipset::checkParam(std::string &param, int entier)
   int	a = nbr.find("-"), b = 0;
 
 
-  (a != -1 && a != 0) ? throw myException("Erreur de syntaxe sur le nombre" , num) : nbr = nbr;
+  (a != -1 && a != 0) ? throw myException::lexicalException("Erreur de syntaxe sur le nombre" , num) : nbr = nbr;
   if (a == 0)
     nbr = nbr.substr(1, nbr.size() - 1);
   if (entier == 1)
     {
-      ((nbr.find_first_not_of("0123456789")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
+      ((nbr.find_first_not_of("0123456789")) != std::string::npos) ? throw myException::lexicalException("Erreur de syntaxe sur le nombre", num) : param.clear();
       return (param = sav);
     }
   //else if (entier == 0)
   //    {
-  ((nbr.find_first_not_of("0123456789.")) != std::string::npos) ? throw myException("Erreur de syntaxe sur le nombre", num) : param.clear();
+  ((nbr.find_first_not_of("0123456789.")) != std::string::npos) ? throw myException::lexicalException("Erreur de syntaxe sur le nombre", num) : param.clear();
   a = nbr.find(".");
-  (a == -1) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : b = nbr.rfind(".");
-  (a != b) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : (a = b);
-  ((a == 0 || (size_t)a == (nbr.size() - 1))) ? throw myException("Erreur : la valeur du type n'est pas respectée", num) : param = sav;
+  (a == -1) ? throw myException::lexicalException("Erreur : la valeur du type n'est pas respectée", num) : b = nbr.rfind(".");
+  (a != b) ? throw myException::lexicalException("Erreur : la valeur du type n'est pas respectée", num) : (a = b);
+  ((a == 0 || (size_t)a == (nbr.size() - 1))) ? throw myException::lexicalException("Erreur : la valeur du type n'est pas respectée", num) : param = sav;
   return (param);
   // }
 }
@@ -117,7 +116,7 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
   std::string	param(""), type(""), typeV(" "), tmp(line.substr(0, instr.size()));
   int		a = 0, b = 0, c = 0;
 
-  (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
+  (tmp != instr) ? (throw myException::lexicalException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   for (std::map<std::string, int>::const_iterator it = verifC.begin(); it != verifC.end(); ++it)
     {
       if ((a = line.find(it->first)) != -1)
@@ -126,19 +125,19 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
 	}
       b++;
     }
-  (type == "") ? (throw myException("Erreur : le type n'existe pas", num)) : tmp = line.substr(instr.size(), type.size() + 1);
+  (type == "") ? (throw myException::lexicalException("Erreur : le type n'existe pas", num)) : tmp = line.substr(instr.size(), type.size() + 1);
   typeV.append(type);
-  (tmp != typeV) ? (throw myException("Erreur de syntaxe sur le type", num)) : tmp.clear();
+  (tmp != typeV) ? (throw myException::lexicalException("Erreur de syntaxe sur le type", num)) : tmp.clear();
   c = instr.size() + typeV.size();
   tmp = line.substr(c);
   c = tmp.find(')');
   tmp = tmp.substr(0, c + 1);
   std::string::iterator it = tmp.begin();
-  (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException("Erreur de syntaxe sur le parametre", num));
+  (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException::lexicalException("Erreur de syntaxe sur le parametre", num));
   a = typeV.size() + instr.size() + tmp.size() + 2;
   type = line.substr(a, line.size() - a);
   a = checkComa(type, ' ');
-  (a == 0) ? throw myException("Erreur de syntaxe après l'instruction", num) : putComplexInList(instr, typeV, param);
+  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : putComplexInList(instr, typeV, param);
 }
 
 /*  verifie tous les paramètres ne prenant pas d'arguments */
@@ -148,10 +147,10 @@ void	Chipset::checkSimple(std::string &instr, std::string &line)
   std::string	tmp = line.substr(0, instr.size());
   int		a = 0;
 
-  (tmp != instr) ? (throw myException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
+  (tmp != instr) ? (throw myException::lexicalException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   tmp = line.substr(instr.size(), line.size() - instr.size());
   a = checkComa(tmp, ' ');
-  (a == 0) ? throw myException("Erreur de syntaxe après l'instruction", num) : final.push_back(instr);
+  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : final.push_back(instr);
 }
 
 /* verifie que l'instruction existe, et apelle la verification adéquate des paramètres */
@@ -168,7 +167,7 @@ void	Chipset::checkInstruction(std::string &line)
 	  inst = it->first; break;
 	}
     }
-  (a == std::string::npos) ? (throw myException("Synxtaxe incorrect", num)) : (a = a);
+  (a == std::string::npos) ? (throw myException::lexicalException("Synxtaxe incorrect", num)) : (a = a);
   if (verif[inst] == 0)
     return (checkSimple(inst, line));
   else

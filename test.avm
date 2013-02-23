@@ -1,7 +1,7 @@
 ; -------------
 ; sample.avm -
 ; -------------
-push int32(-1)
+pus;h int32(-1)
 push int16(3)
 push int8(600)
 sub
