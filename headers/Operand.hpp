@@ -44,7 +44,6 @@ public:
   IOperand				*operator*(const IOperand &rhs) const;
   IOperand				*operator/(const IOperand &rhs) const;
   IOperand				*operator%(const IOperand &rhs) const;
-  bool					operator==(const IOperand &rhs) const;
 };
 
 template <typename T>
@@ -243,14 +242,6 @@ inline IOperand				*Operand<double>::operator%(const IOperand &rhs) const
   throw myException("Error : modulo with a double which is not a valid operation");
   std::string tmp = rhs.toString();
   return NULL;
-}
-
-template <typename T>
-bool					Operand<T>::operator==(const IOperand &rhs) const
-{
-  if ((this->getType() == rhs.getType()) && (this->toString() == rhs.toString()))
-    return (true);
-  return (false);
 }
 
 #endif
