@@ -61,7 +61,7 @@ IOperand *	Bios::createFloat(const std::string &value)
 
 IOperand *	Bios::createDouble(const std::string &value)
 {
-  this->checkFlowian(value, 1.7*10308, -1.7e-308);
+  this->checkFlowian(value, 1.7e308, -1.7e-308);
   return (new Operand<double>(value, Double));
 }
 
