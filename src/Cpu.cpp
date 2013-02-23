@@ -1,5 +1,5 @@
 #include	"../headers/Cpu.hh"
-#include	"../headers/myException.hh"
+#include	"../headers/genException.hh"
 
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
 {

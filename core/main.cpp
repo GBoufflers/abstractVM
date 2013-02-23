@@ -3,7 +3,7 @@
 #include		"../headers/Io.hh"
 #include		"../headers/Chipset.hh"
 #include		"../headers/Cpu.hh"
-#include		"../headers/myException.hh"
+#include		"../headers/genException.hh"
 
 
 

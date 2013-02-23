@@ -1,49 +1,39 @@
-#ifndef __MYEXCEPTION_HH__
-#define __MYEXCEPTION_HH__
+#include	"genException.hh"
 
-#include	<stdexcept>
-#include	<sstream>
-#include	<iostream>
-#include	<list>
-#include	<string>
+#ifndef	        __MYEXCEPTION_HH__
+#define		__MYEXCEPTION_HH__
 
-class myException : public std::exception
+class genException
 {
-  std::string msg;
-  const char *_Msg;
-  int	*_line;
-  std::list<std::string> *_instr;
-
 public:
-  myException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL) :_Msg(Msg), _line(&line), _instr(instr)
+  class lexicalException : public myException
   {
-    aff();
-  }
-  
-  virtual void aff()  throw()
-  {
-     if (_instr)
-      {
-	for (std::list<std::string>::const_iterator it = _instr->begin(); it != _instr->end(); ++it)
-	  std::cout << *it << std::endl;
-      }
-    std::ostringstream oss;
-    if (_line != 0)
-      oss <<  _Msg << " à la ligne " << _line << std::endl;
-    else
-      oss << _Msg << std::endl;
-    this->msg = oss.str();
-  }
-
-  virtual ~myException() throw()
-  {
+  public:
+    lexicalException(const char *msg, int line = 0) : myException(msg, line, NULL)
+    {
+      
+    }
     
-  }
+    virtual ~lexicalException() throw()
+    {
+      
+    }
+  };
   
-  virtual const char * what() const throw()
+  class executionException : public myException
   {
-    return this->msg.c_str();
-  }
+  public:
+    executionException( const char *msg, std::list<std::string> *list = NULL) : myException(msg, 0, list)
+    {
+      
+    }
+    
+    virtual ~executionException() throw()
+    {
+      
+    }
+  };
+  
 };
 
 #endif

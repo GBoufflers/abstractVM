@@ -1,5 +1,5 @@
 #include	<string>
-#include	"../headers/myException.hh"
+#include	"../headers/genException.hh"
 #include	"../headers/Memory.hh"
 #include	"../headers/IOperand.hh"
 

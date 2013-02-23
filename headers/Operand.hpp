@@ -190,7 +190,7 @@ IOperand				*Operand<T>::operator/(const IOperand &rhs) const
   ss1 >> val1;
   ss2 >> val2;
   if (val2 == 0)
-    throw myException("Error : division by division !", 0);
+    throw myException("Error : division by division !");
   res = val1 / val2;
   if (this->getType() == Float || rhs.getType() == Double)
     {

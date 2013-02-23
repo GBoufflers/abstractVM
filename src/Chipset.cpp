@@ -1,4 +1,5 @@
 #include	"../headers/Chipset.hh"
+#include	"../headers/genException.hh"
 #include	"../headers/myException.hh"
 #include	"../headers/Cpu.hh"
 #include	<algorithm>
@@ -7,6 +8,7 @@ Chipset::Chipset(std::list<std::string> &list) : file(list), num(1)
 {
   initMap();
   traverseList();
+  throw genException::lexicalException("test exception");
 }
 
 Chipset::~Chipset()
