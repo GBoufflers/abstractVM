@@ -11,7 +11,7 @@ class myException : public std::exception
 {
   std::string msg;
 public:
-  myException(int line = 0, const char * Msg, std::list<std::string> *instr = NULL)
+  myException(const char * Msg, int line = 0, std::list<std::string> *instr = NULL)
   {
     if (instr)
       {

@@ -76,7 +76,7 @@ void	Cpu::assert(std::vector<std::string> fields)
   op = bios->createOperand(type, fields[2]);
   op2 = this->_mem->mFrontGet();
   if ((op->getType() != op2->getType()) || (op->toString() != op2->toString()))
-    throw myException("the value checked by assert doesnt match with the first value of the stack", 0);
+    throw myException("the value checked by assert doesnt match with the first value of the stack");
 }
 
 void	Cpu::print()
@@ -99,7 +99,7 @@ void	Cpu::print()
       this->pushInList(msend);
     }
   else
-    throw myException("Error : the value checked by print doesn't match with an int8", 0);
+    throw myException("Error : the value checked by print doesn't match with an int8");
 }
 
 void	Cpu::push(std::vector<std::string> fields)
@@ -141,7 +141,7 @@ void	Cpu::add()
   IOperand *n2;
 
   if (this->_mem->myStackSize() < 2)
-    throw myException("stack is not big enough to add!",  &_res);
+    throw myException("stack is not big enough to add!");
   n1 = this->_mem->mFrontGet();
   this->_mem->mFrontPop();
   n2 = this->_mem->mFrontGet();
