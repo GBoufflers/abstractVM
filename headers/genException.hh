@@ -16,34 +16,11 @@ protected:
   std::list<std::string> *_instr;
 
 public:
-  genException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL) : _Msg(Msg), _line(line), _instr(instr)
-  {
-    aff();
-  }
-
-  virtual ~genException() throw(){}
-
-  virtual void aff()  throw()
-  {
-     if (_instr)
-      {
-	for (std::list<std::string>::const_iterator it = _instr->begin(); it != _instr->end(); ++it)
-	  std::cout << *it << std::endl;
-      }
-    std::ostringstream oss;
-    if (_line != 0)
-      oss <<  _Msg << " à la ligne " << _line << std::endl;
-    else
-      oss << _Msg << std::endl;
-    this->msg = oss.str();
-  }
+  genException(const char *Msg, int line = 0, std::list<std::string> *instr = NULL);
+  virtual ~genException() throw();
+  virtual void aff()  throw();
   
-  virtual const char * what() const throw()
-  {
-    return this->msg.c_str();
-  }
-
-  
+  virtual const char * what() const throw();
 };
 
 #endif

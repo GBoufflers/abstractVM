@@ -10,7 +10,7 @@ OBJ=		core/main.o \
 		src/Bios.o \
 		src/Chipset.o \
 		src/Cpu.o \
-		src/MotherBoard.o
+		src/genException.o
 
 all: $(NAME)
 
