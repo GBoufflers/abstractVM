@@ -6,11 +6,13 @@
 #include	<map>
 #include	<string>
 #include	"Operand.hpp"
+#include	"Io.hh"
 #include	"Memory.hh"
 
 class	Cpu
 {
   void					(Cpu::*creation[9])();
+  Io					*_io;
   Memory				*_mem;
   std::map<std::string, int>		_mmap;
   std::map<std::string, eOperandType>	_checkType;
@@ -38,7 +40,6 @@ public:
 
   /***************/
 
-  void	doDump();
   void	makePtrFunc(std::string &func);
   void	execInstruct();
   void	pushInList(std::string &str);
@@ -46,7 +47,7 @@ public:
   int	exec(std::string func, int *isDumpToDo);
   void	initPtrFunc();
   void	initMaps();
-  eOperandType	whatIsTheType(std::string func);
+  eOperandType	whatIsTheType(std::string func) const;
 };
 
 #endif

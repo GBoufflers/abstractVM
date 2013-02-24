@@ -34,7 +34,7 @@ int			Memory::myStackSize() const
   return (this->mem.size());
 }
 
-IOperand		*Memory::mFrontGet()
+IOperand		*Memory::mFrontGet() const
 {
   if (this->myStackEmpty())
     {

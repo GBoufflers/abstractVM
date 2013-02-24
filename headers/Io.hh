@@ -15,6 +15,7 @@ public:
   virtual void	readInput();
   virtual void	putFileInList(std::ifstream &file);
   virtual void	putInputInList();
+  void	doDump(std::list<std::string>);
   virtual std::list<std::string> getList();
 };
 

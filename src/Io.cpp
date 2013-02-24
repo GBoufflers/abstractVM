@@ -11,6 +11,12 @@ Io::~Io()
 
 }
 
+void	Io::doDump(std::list<std::string> ml)
+{
+  for (std::list<std::string>::const_iterator it = ml.begin(); it != ml.end(); ++it)
+    std::cout << *it << std::endl;
+}
+
 std::list<std::string>	Io::getList()
 {
   return (this->content);
