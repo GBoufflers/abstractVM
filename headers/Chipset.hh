@@ -24,6 +24,7 @@ public:
   virtual std::string &checkParam(std::string &param, int pos);
   virtual void	putComplexInList(std::string &a, std::string &b, std::string &c);
   virtual std::list<std::string> &	getInstruct();
+  virtual void	checkEndLine(std::string &end) const;
 };
 
 #endif

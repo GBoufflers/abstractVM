@@ -2,7 +2,8 @@
 ; -------------
 ; sample.avm -
 ; -------------
-mul         .;
+push /int32(4)    /
+;/s
 dump
 ;david la bitch et boufflers sa bitch et ghais le masta des deux bitchspush float(1.456)
 ;popn
