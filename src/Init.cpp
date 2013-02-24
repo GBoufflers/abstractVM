@@ -23,7 +23,7 @@ void		Init::initTab()
   this->creation[4] = &Init::createDouble;
 }
 
-void		Init::checkFlowian(const std::string &svalue, long double max, long double min)
+void		Init::checkFlowian(const std::string &svalue, long double max, long double min) const
 {
   long double	value;
   std::stringstream	ss(svalue);

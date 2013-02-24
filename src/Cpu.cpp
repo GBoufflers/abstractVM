@@ -42,7 +42,7 @@ void	Cpu::dump()
     }
 }
 
-eOperandType	Cpu::whatIsTheType(std::string func)
+eOperandType	Cpu::whatIsTheType(std::string func) const
 {
   eOperandType		ret;
 
@@ -56,12 +56,6 @@ eOperandType	Cpu::whatIsTheType(std::string func)
 	}
     }
   return (ret);
-}
-
-void	Cpu::doDump()
-{
-  for (std::list<std::string>::const_iterator it = this->_res.begin(); it != this->_res.end(); ++it)
-    std::cout << *it << std::endl;
 }
 
 void	Cpu::assert(std::vector<std::string> fields)
@@ -296,7 +290,7 @@ void	Cpu::execInstruct()
 	}
     }
   if (isDumpToDo == 1)
-    this->doDump();
+    this->_io->doDump(this->_res);
   if (isAnExit == 0)
     throw myException::executionException("Exit ain't present in the file");
 }

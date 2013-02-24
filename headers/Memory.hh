@@ -17,7 +17,7 @@ public:
 
   virtual bool			myStackEmpty() const;
   virtual int			myStackSize() const;
-  virtual IOperand		*mFrontGet();
+  virtual IOperand		*mFrontGet() const;
   virtual void			mFrontPop();
   virtual void			mFrontPush(IOperand *n);
 };

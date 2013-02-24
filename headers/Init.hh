@@ -18,7 +18,7 @@ public:
   virtual ~Init();
 
   IOperand *createOperand(eOperandType type, const std::string & value);
-  void	   checkFlowian(const std::string &svalue, long double max, long double min);
+  void	   checkFlowian(const std::string &svalue, long double max, long double min) const;
   virtual void	initTab();
 };
 
