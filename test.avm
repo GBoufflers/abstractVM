@@ -1,13 +1,12 @@
 ; -------------
 ; sample.avm -
 ; -------------
-pus;h int32(-1)
+push int32(-1)
 push int16(3)
-push int8(600)
+push int8(25)
 sub
 push float(5.63)
 push int8(2)
-mul
 push int16(3)
 push int8(2)
 div

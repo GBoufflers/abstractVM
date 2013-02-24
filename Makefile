@@ -1,4 +1,4 @@
-NAME=		abstractVM
+NAME=		avm
 
 CXX=		g++ -g -Wall -Wextra -W -Werror
 
