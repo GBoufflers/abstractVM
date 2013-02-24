@@ -146,11 +146,20 @@ void	Chipset::checkSimple(std::string &instr, std::string &line)
 {
   std::string	tmp = line.substr(0, instr.size());
   int		a = 0;
+  const char *str;
 
   (tmp != instr) ? (throw myException::lexicalException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   tmp = line.substr(instr.size(), line.size() - instr.size());
   a = checkComa(tmp, ' ');
-  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : final.push_back(instr);
+  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : str = tmp.c_str();
+  a = 0;
+  while (str[a] && str[a] != ';')
+    {
+      if (str[a] != ';' && str[a] != ' ')
+	throw myException::lexicalException("Erreur de syntaxe après l'instruction", num);
+      a++;
+    }
+  final.push_back(instr);
 }
 
 /* verifie que l'instruction existe, et apelle la verification adéquate des paramètres */

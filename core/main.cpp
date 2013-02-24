@@ -11,12 +11,11 @@ void	avm(char *file)
 {
   try
     {
-      Io	a(file);
-  
-      std::list<std::string> lol = a.getList();
-      Chipset	b(lol);
-      std::list<std::string> p = b.getInstruct();
-      Cpu		c(p);
+      Io	IO(file);
+      std::list<std::string> listf = IO.getList();
+      Chipset chip(listf);
+      std::list<std::string> instru = chip.getInstruct();
+      Cpu cpu(instru);
     }
   catch (const std::exception & e ) { std::cerr << e.what();}
 }

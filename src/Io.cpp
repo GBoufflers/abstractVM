@@ -1,4 +1,5 @@
 #include	"../headers/Io.hh"
+#include	"../headers/myException.hh"
 
 Io::Io(char *file) : _file(file)
 {
@@ -45,7 +46,7 @@ void	Io::readInput()
   else if(fichier)
     putFileInList(fichier);
   else
-    std::cerr << this->_file <<  " : no such file found " << std::endl;
+    throw myException::lexicalException("No such file");
 }
   
   

@@ -2,9 +2,8 @@
 ; -------------
 ; sample.avm -
 ; -------------
-push int16(40)
-pop
+mul         .;
 dump
-push float(1.456)
-popn
+;david la bitch et boufflers sa bitch et ghais le masta des deux bitchspush float(1.456)
+;popn
 exit
