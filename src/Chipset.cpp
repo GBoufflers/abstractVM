@@ -44,7 +44,7 @@ void	Chipset::initMap()
  
    si la valeur de retour est 0 , il y a une erreur de syntaxe */
 
-int	Chipset::checkComa(std::string &line, char c)
+int	Chipset::checkComa(std::string &line, char c) const
 {
   int	a = 0;
 
