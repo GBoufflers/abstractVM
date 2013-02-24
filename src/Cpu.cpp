@@ -4,6 +4,7 @@
 Cpu::Cpu(std::list<std::string> &instructs) : _instruction(instructs)
 {
   this->_mem = new Memory();
+  this->_bios = new Init();
   initMaps();
   initPtrFunc();
   execInstruct();
@@ -62,12 +63,10 @@ void	Cpu::assert(std::vector<std::string> fields)
 { 
   IOperand	*op;
   IOperand	*op2;
-  Init		*bios;
   eOperandType	type;
   
-  bios = new Init;
   type = whatIsTheType(fields[1]);
-  op = bios->createOperand(type, fields[2]);
+  op = _bios->createOperand(type, fields[2]);
   op2 = this->_mem->mFrontGet();
   if ((op->getType() != op2->getType()) || (op->toString() != op2->toString()))
     throw myException::executionException("the value checked by assert doesnt match with the first value of the stack", &this->_res);
@@ -98,11 +97,10 @@ void	Cpu::print()
 
 void	Cpu::push(std::vector<std::string> fields)
 {
-  Init		bios;
   eOperandType	type;
 
   type = whatIsTheType(fields[1]);
-  this->_mem->mFrontPush(bios.createOperand(type, fields[2]));
+  this->_mem->mFrontPush(_bios->createOperand(type, fields[2]));
 }
 
 std::vector<std::string> Cpu::split(char delim, std::string work) 

@@ -6,7 +6,6 @@
 Init::Init()
 {
   initTab();
-
 }
 
 Init::~Init()

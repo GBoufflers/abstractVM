@@ -2,6 +2,7 @@
 #define __INIT_HH__
 
 #include	<string>
+#include	<list>
 #include	"IInit.hh"
 #include	"enum.hh"
 

@@ -15,6 +15,7 @@ class	Cpu : public ICpu
   void					(Cpu::*creation[9])();
   Io					*_io;
   Memory				*_mem;
+  Init					*_bios;
   std::map<std::string, int>		_mmap;
   std::map<std::string, eOperandType>	_checkType;
   std::list<std::string>		_res;
