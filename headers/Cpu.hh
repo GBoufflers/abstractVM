@@ -5,11 +5,12 @@
 #include	<vector>
 #include	<map>
 #include	<string>
+#include	"ICpu.hh"
 #include	"Operand.hpp"
 #include	"Io.hh"
 #include	"Memory.hh"
 
-class	Cpu
+class	Cpu : public ICpu
 {
   void					(Cpu::*creation[9])();
   Io					*_io;
@@ -24,30 +25,30 @@ public:
   virtual ~Cpu();
 
   /*******************/
-  void	add();
-  void	sub();
-  void	mul();
-  void	div();
-  void	mod();
-  void	pop();
-  void	dump();
-  void	print();
+  virtual void	add();
+  virtual void	sub();
+  virtual void	mul();
+  virtual void	div();
+  virtual void	mod();
+  virtual void	pop();
+  virtual void	dump();
+  virtual void	print();
 
   /**************/
 
-  void	assert(std::vector<std::string> fields);
-  void	push(std::vector<std::string> fields);
+  virtual void	assert(std::vector<std::string> fields);
+  virtual void	push(std::vector<std::string> fields);
 
   /***************/
 
-  void	makePtrFunc(std::string &func);
-  void	execInstruct();
-  void	pushInList(std::string &str);
-  std::vector<std::string> split(char delim, std::string work);
-  int	exec(std::string func, int *isDumpToDo);
-  void	initPtrFunc();
-  void	initMaps();
-  eOperandType	whatIsTheType(std::string func) const;
+  //  virtual void	makePtrFunc(std::string &func);
+  virtual void	execInstruct();
+  virtual void	pushInList(std::string &str);
+  virtual std::vector<std::string> split(char delim, std::string work);
+  virtual int	exec(std::string func, int *isDumpToDo);
+  virtual void	initPtrFunc();
+  virtual void	initMaps();
+  virtual eOperandType	whatIsTheType(std::string func) const;
 };
 
 #endif
