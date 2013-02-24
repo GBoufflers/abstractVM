@@ -115,6 +115,7 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
 {
   std::string	param(""), type(""), typeV(" "), tmp(line.substr(0, instr.size()));
   int		a = 0, b = 0, c = 0;
+  std::string::iterator it;
 
   (tmp != instr) ? (throw myException::lexicalException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   for (std::map<std::string, int>::const_iterator it = verifC.begin(); it != verifC.end(); ++it)
@@ -132,12 +133,28 @@ void	Chipset::checkComplex(std::string &instr, std::string &line)
   tmp = line.substr(c);
   c = tmp.find(')');
   tmp = tmp.substr(0, c + 1);
-  std::string::iterator it = tmp.begin();
+  it = tmp.begin();
   (*it == '(' && tmp.size() >= 3) ? (param = checkParam(tmp, a)) : (throw myException::lexicalException("Erreur de syntaxe sur le parametre", num));
   a = typeV.size() + instr.size() + tmp.size() + 2;
   type = line.substr(a, line.size() - a);
   a = checkComa(type, ' ');
-  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : putComplexInList(instr, typeV, param);
+  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : checkEndLine(type);
+  putComplexInList(instr, typeV, param);
+}
+
+/* regarde ce qu'il reste à la fin de la ligne et leve des exceptions si il y a des erreurs */
+
+void	Chipset::checkEndLine(std::string &end) const
+{
+  int	a = 0;
+  const char *str = end.c_str();
+
+  while (str[a] && str[a] != ';')
+    {
+      if (str[a] != ';' && str[a] != ' ')
+	throw myException::lexicalException("Erreur de syntaxe après l'instruction", num);
+      a++;
+    }
 }
 
 /*  verifie tous les paramètres ne prenant pas d'arguments */
@@ -146,19 +163,11 @@ void	Chipset::checkSimple(std::string &instr, std::string &line)
 {
   std::string	tmp = line.substr(0, instr.size());
   int		a = 0;
-  const char *str;
 
   (tmp != instr) ? (throw myException::lexicalException("Erreur de syntaxe sur l'instruction", num)) : tmp.clear();
   tmp = line.substr(instr.size(), line.size() - instr.size());
   a = checkComa(tmp, ' ');
-  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : str = tmp.c_str();
-  a = 0;
-  while (str[a] && str[a] != ';')
-    {
-      if (str[a] != ';' && str[a] != ' ')
-	throw myException::lexicalException("Erreur de syntaxe après l'instruction", num);
-      a++;
-    }
+  (a == 0) ? throw myException::lexicalException("Erreur de syntaxe après l'instruction", num) : checkEndLine(tmp);
   final.push_back(instr);
 }
 
