@@ -7,7 +7,7 @@ CC=		$(CXX)
 OBJ=		core/main.o \
 		src/Memory.o \
 		src/Io.o \
-		src/Bios.o \
+		src/Init.o \
 		src/Chipset.o \
 		src/Cpu.o \
 		src/genException.o

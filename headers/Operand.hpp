@@ -7,7 +7,7 @@
 #include		<sstream>
 #include		<string>
 #include		"enum.hh"
-#include		"Bios.hh"
+#include		"Init.hh"
 #include		"IOperand.hh"
 #include		"myException.hh"
 
@@ -18,7 +18,7 @@ private:
   T	  				_value;
   std::string				_svalue;
   eOperandType				_type;
-  Bios					*_bios;
+  Init					*_bios;
 
 public:
   Operand(const std::string &value, eOperandType t);
@@ -45,7 +45,7 @@ public:
 template <typename T>
 Operand<T>::Operand(const std::string &value, eOperandType t) : _svalue(value), _type(t)
 {
-  _bios = new Bios();
+  _bios = new Init();
 }
 
 template <typename T>

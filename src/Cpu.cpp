@@ -68,10 +68,10 @@ void	Cpu::assert(std::vector<std::string> fields)
 { 
   IOperand	*op;
   IOperand	*op2;
-  Bios		*bios;
+  Init		*bios;
   eOperandType	type;
   
-  bios = new Bios;
+  bios = new Init;
   type = whatIsTheType(fields[1]);
   op = bios->createOperand(type, fields[2]);
   op2 = this->_mem->mFrontGet();
@@ -104,7 +104,7 @@ void	Cpu::print()
 
 void	Cpu::push(std::vector<std::string> fields)
 {
-  Bios		bios;
+  Init		bios;
   eOperandType	type;
 
   type = whatIsTheType(fields[1]);
