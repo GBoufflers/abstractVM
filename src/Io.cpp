@@ -17,7 +17,7 @@ void	Io::doDump(std::list<std::string> ml)
     std::cout << *it << std::endl;
 }
 
-std::list<std::string>	Io::getList()
+std::list<std::string>	Io::getList() const
 {
   return (this->content);
 }
@@ -43,7 +43,7 @@ void	Io::putInputInList()
   this->content.pop_back();
 }
 
-void	Io::readInput()
+void	Io::readInput() 
 {
   std::ifstream fichier(this->_file, std::ios::in);
 

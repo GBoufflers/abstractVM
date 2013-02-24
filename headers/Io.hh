@@ -12,11 +12,11 @@ public:
   virtual ~Io();
   Io(char *file);
 
-  virtual void	readInput();
+  virtual void	readInput() ;
   virtual void	putFileInList(std::ifstream &file);
   virtual void	putInputInList();
   void	doDump(std::list<std::string>);
-  virtual std::list<std::string> getList();
+  virtual std::list<std::string> getList() const;
 };
 
 #endif
